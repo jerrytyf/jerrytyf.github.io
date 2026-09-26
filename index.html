@@ -1,430 +1,315 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerry Tang | Homepage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #f7f9fc 0%, #edf2f7 100%);
-            color: #2d3748;
-            line-height: 1.7;
-        }
-        header {
-            background: linear-gradient(90deg, #2c3e50, #34495e);
-            color: white;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-        }
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-            gap: 12px;
-        }
-        .nav-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            white-space: nowrap;
-            color:#ecf0f1;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: nowrap;
-        }
-        .nav-links a {
-            color: #d0d7dc;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.25s ease;
-            white-space: nowrap;
-        }
-        .nav-links a:hover {
-            color: #42a5f5;
-        }
-        #langBtn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            transition: background-color 0.25s ease;
-        }
-        #langBtn:hover {
-            background: #217dbb;
-        }
-        .menu-toggle {
-            display: none;
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .hero {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            margin: 48px 0 48px;
-            flex-wrap: wrap;
-        }
-        .avatar {
-            width:180px;
-            height:180px;
-            border-radius:50%;
-            object-fit:cover;
-            border:4px solid #ffffff;
-            box-shadow:0 4px 14px rgba(41, 128, 185, 0.22);
-        }
-        .hero-info h1 {
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            margin-bottom:8px;
-            color:#1a2533;
-        }
-        .hero-info p {
-            font-size:1.1rem;
-            color:#4a5568;
-            margin-bottom:12px;
-        }
-        .contact-links a{
-            display:inline-block;
-            margin-right:14px;
-            color:#2b6cb0;
-            text-decoration:none;
-            font-weight:500;
-            transition: color 0.22s ease;
-        }
-        .contact-links a:hover{
-            color:#2c5282;
-        }
-        section {
-            margin-bottom:52px;
-        }
-        h2 {
-            border-bottom: 2px solid #cbd5e0;
-            padding-bottom:8px;
-            margin-bottom:22px;
-            color:#2c3e50;
-        }
-        h2 i {
-            margin-right:8px;
-            color:#3182ce;
-        }
-        .news-item {
-            display:flex;
-            gap:16px;
-            margin-bottom:14px;
-        }
-        .news-date {
-            min-width:110px;
-            font-weight:600;
-            color:#718096;
-        }
-        .edu-item, .intern-item, .pub-item {
-            background:#ffffff;
-            padding:20px;
-            border-radius:12px;
-            box-shadow:0 2px 10px rgba(0,0,0,0.07);
-            margin-bottom:18px;
-            transition: transform 0.24s ease, box-shadow 0.24s ease;
-        }
-        .edu-item:hover, .intern-item:hover, .pub-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
-        }
-        .edu-top, .intern-top, .pub-top {
-            display:flex;
-            justify-content:space-between;
-            margin-bottom:8px;
-        }
-        .edu-school, .intern-company, .pub-title {
-            font-weight:600;
-            font-size:1.05rem;
-            color:#2d3748;
-        }
-        .edu-time, .intern-time, .pub-year {
-            color:#718096;
-            font-weight:500;
-        }
-        .pub-authors {
-            color:#4a5568;
-            font-size:0.95rem;
-            margin:6px 0;
-        }
-        .pub-authors strong {
-            color:#2b6cb0;
-        }
-        .pub-links a {
-            color:#3182ce;
-            text-decoration:none;
-            margin-right:10px;
-            transition: color 0.22s ease;
-        }
-        .pub-links a:hover{
-            color:#2c5282;
-            text-decoration:underline;
-        }
-        .pub-links i{
-            margin-right:4px;
-        }
-        footer {
-            text-align:center;
-            padding:32px;
-            color:#718096;
-            font-size:0.9rem;
-        }
-        /*语言控制*/
-        .zh{display:none;}
-        .en{display:block;}
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: inline-flex;
-            }
-            .nav-links {
-                position: absolute;
-                top: 64px;
-                left: 0;
-                right: 0;
-                background: linear-gradient(90deg, #2c3e50, #34495e);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                padding: 12px 20px 18px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-                display: none;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-links a {
-                padding: 10px 0;
-                width: 100%;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            }
-        }
-        @media (max-width:768px){
-            .hero{
-                flex-direction:column;
-                text-align:center;
-            }
-            .news-item{
-                flex-direction:column;
-                gap:4px;
-            }
-        }
-    </style>
-</head>
-<body>
-<header>
-    <div class="header-inner">
-        <div class="nav-title">Yufeng Tang</div>
-        <button id="langBtn">中文</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <nav class="nav-links" id="navLinks">
-            <a href="#about"><i class="fa-solid fa-user"></i> <span class="en">About</span><span class="zh">关于我</span></a>
-            <a href="#news"><i class="fa-solid fa-newspaper"></i> <span class="en">News</span><span class="zh">最新动态</span></a>
-            <a href="#education"><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></a>
-            <a href="#internship"><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></a>
-            <a href="#publications"><i class="fa-solid fa-file-pdf"></i> <span class="en">Publications</span><span class="zh">论文成果</span></a>
-            <a href="#projects"><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></a>
-        </nav>
-    </div>
-</header>
-<div class="container">
-    <!-- About Me -->
-    <section id="about" class="hero">
-        <img class="avatar" src="avatar.jpg" alt="Yufeng Tang">
-        <div class="hero-info">
-            <h1>Yufeng Tang (Jerry Tang)</h1>
-            <p><i class="fa-solid fa-laptop"></i>
-                <span class="en">Undergraduate Student | Research Enthusiast</span>
-                <span class="zh">本科生 | 科研爱好者</span>
-            </p>
-            <p>
-                <span class="en">I am an undergraduate student majoring in Software Engineering at Northwestern Polytechnical University. My research interests include Large Language Model evaluation, Computer Vision, occlusion‑robust visual recognition, and image enhancement.</span>
-                <span class="zh">我是西北工业大学软件工程专业本科生。研究方向包括大语言模型评测、计算机视觉、抗遮挡视觉识别、图像增强。</span>
-            </p>
-            <div class="contact-links">
-                <a href="mailto:tangjerry@mail.nwpu.edu.cn"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://github.com/jerrytyf"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=yiqJcakAAAAJ"><i class="fa-solid fa-book"></i> Google Scholar</a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://www.researchgate.net"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
-            </div>
-        </div>
-    </section>
-    <!-- News 时间倒序 -->
-    <section id="news">
-        <h2><i class="fa-solid fa-bullhorn"></i> <span class="en">News</span><span class="zh">最新动态</span></h2>
-        <div class="news-item">
-            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jun 2026</div>
-            <div>
-                <span class="en">Participated in NUS School of Computing Summer Workshop and won 3rd Place & Most Popular Award.</span>
-                <span class="zh">参加新加坡国立大学计算机学院暑期工坊，获得三等奖以及最受欢迎项目奖。</span>
-            </div>
-        </div>
-        <div class="news-item">
-            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Feb 2026</div>
-            <div>
-                <span class="en">Our CVPR‑submitted paper received reviewer scores of 1, 4, 4, where score 4 corresponds to borderline accept.</span>
-                <span class="zh">投递至CVPR的论文返回审稿分数1,4,4，其中4代表borderline accept（边缘接收）。</span>
-            </div>
-        </div>
-        <div class="news-item">
-            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jul‑Sep 2025</div>
-            <div>
-                <span class="en">Worked as Algorithm Intern at Meiya Pico Large Model R&D Center.</span>
-                <span class="zh">于美亚柏科大模型研发中心担任算法实习生。</span>
-            </div>
-        </div>
-        <div class="news-item">
-            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jun 2024‑Feb 2025</div>
-            <div>
-                <span class="en">Submitted first‑author paper to CVPR for peer review (under review).</span>
-                <span class="zh">以第一作者向CVPR投递论文，目前处于审稿中。</span>
-            </div>
-        </div>
-    </section>
-    <!-- Education -->
-    <section id="education">
-        <h2><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></h2>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-school"></i> Northwestern Polytechnical University, B.Eng. in Software Engineering</span>
-                <span class="edu-time"> — Present</span>
-            </div>
-            <p>
-                <span class="en">English: CET‑4 641, CET‑6 578, IELTS 6.5</span>
-                <span class="zh">英语水平：四级641，六级578，雅思6.5</span>
-            </p>
-        </div>
-    </section>
-    <!-- Internship -->
-    <section id="internship">
-        <h2><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></h2>
-        <div class="intern-item">
-            <div class="intern-top">
-                <span class="intern-company"><i class="fa-solid fa-building"></i> Meiya Pico | Algorithm Intern, Large Model R&D Center</span>
-                <span class="intern-time">Jul 2025 - Sep 2025</span>
-            </div>
-            <p>
-                <span class="en">Systematically investigated mainstream and cutting‑edge large language models (Qwen3, DeepSeek). Conducted comprehensive evaluations on model capabilities for knowledge reasoning, code generation and complex QA tasks, via remote API calling and local deployment over authoritative open‑source benchmarks including AIME, GPQA, bfcl‑v3, LiveCodeBench, ArenaHard.<br>
-            Skills: Python, LLM evaluation, local model deployment, Linux, open‑source benchmark suites</span>
-                <span class="zh">系统调研主流前沿大语言模型（Qwen3、DeepSeek）。基于远程API调用与本地部署，在AIME、GPQA、bfcl‑v3、LiveCodeBench、ArenaHard等权威开源评测集上，对模型的知识推理、代码生成、复杂问答能力开展全面评测。<br>技能：Python，大模型评测，模型本地部署，Linux，开源评测套件</span>
-            </p>
-        </div>
-    </section>
-    <!-- Publications -->
-    <section id="publications">
-        <h2><i class="fa-solid fa-file-lines"></i> <span class="en">Publications</span><span class="zh">论文成果</span></h2>
-        <!-- Under Review -->
-        <div class="pub-item">
-            <div class="pub-top">
-                <span class="pub-title">Learning to See by Looking Away: Occlusion‑Robust Visual Recognition via Reasoning under Partial Observations</span>
-                <span class="pub-year">Under Review</span>
-            </div>
-            <div class="pub-authors"><strong>Yufeng Tang</strong> (First Author), et al.</div>
-            <div>
-                <span class="en">Addresses visual recognition under occluded scenarios, proposing a partial‑observation reasoning framework to boost occlusion robustness.</span>
-                <span class="zh">针对遮挡场景下的视觉识别任务，提出基于部分观测的推理框架，提升模型抗遮挡鲁棒性。</span>
-            </div>
-        </div>
-        <!-- Published paper -->
-        <div class="pub-item">
-            <div class="pub-top">
-                <span class="pub-title">3D Enhanced Residual CNN for Video Super‑Resolution Network</span>
-                <span class="pub-year">2025</span>
-            </div>
-            <div class="pub-authors">Xin, W., Wang, Z., Chen, X., <strong>Tang, Y.</strong>, Li, B., & Tian, C.</div>
-            <div>Computers, Materials and Continua, 85(2), 2837‑2849.</div>
-            <div>
-                <span class="en">Personal Contribution: 4th author, responsible for model experiments, server‑based training and testing.</span>
-                <span class="zh">个人贡献：第四作者，负责模型实验、服务器训练与测试工作。</span>
-            </div>
-            <div class="pub-links">
-                <a href="https://www.sciopen.com/article/10.32604/cmc.2025.069784"><i class="fa-solid fa-file-pdf"></i>Paper PDF</a>
-            </div>
-        </div>
-    </section>
-    <!-- Projects -->
-    <section id="projects">
-        <h2><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></h2>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-folder-open"></i> NUS School of Computing Summer Workshop 2026 — Visual Computing Track</span>
-                <span class="edu-time">2026</span>
-            </div>
-            <p>
-                <span class="en">Designed a hybrid NLP‑CNN model for facial expression recognition, built an intelligent system supporting automatic dance scoring and sign‑language recognition. Supervised by Assoc. Prof. Terence Sim. Project awarded Third Place and Most Popular Award.</span>
-                <span class="zh">设计NLP‑CNN混合模型用于人脸表情识别，搭建支持舞蹈自动打分与手语识别的智能系统。由Terence Sim副教授指导，项目获得三等奖及最受欢迎项目奖。</span>
-            </p>
-        </div>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-folder-open"></i> Electrical Imaging Image Enhancement for PetroChina</span>
-                <span class="edu-time"></span>
-            </div>
-            <p>
-                <span class="en">Under supervision of Prof. Chunwei Tian (HIT). Adopted Python and OpenCV‑based image processing algorithms to enhance electrical‑imaging logging data from PetroChina. Optimized image contrast, sharpened edge features and suppressed noise, highlighting underground reservoir electrical anomalies to improve oil‑gas reservoir identification and provide precise geological evidence for petroleum exploration.</span>
-                <span class="zh">在哈尔滨工业大学田春伟教授指导下，使用Python+OpenCV图像处理算法处理中石油电成像测井数据；优化图像对比度、增强边缘、抑制噪声，突出地下储层电异常特征，提升油气储层识别效果，为油气勘探提供地质依据。</span>
-            </p>
-        </div>
-    </section>
-</div>
-<footer>
-    <p><i class="fa-solid fa-copyright"></i> 2026 Yufeng Tang. Last updated: Aug 4, 2026</p>
-</footer>
-<script>
-const langBtn = document.getElementById('langBtn');
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-let isEn = true;
-langBtn.addEventListener('click', () => {
-    isEn = !isEn;
-    if (isEn) {
-        document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-        document.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-        langBtn.innerText = "中文";
-    } else {
-        document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-        langBtn.innerText = "English";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef6ff 0%, #f7fbff 45%, #fff7ed 100%);
+    color: #1f2937;
+    line-height: 1.7;
+}
+
+header {
+    background: linear-gradient(90deg, #0f3460 0%, #16537e 50%, #1e88e5 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 14px rgba(15, 52, 96, 0.25);
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 12px;
+}
+
+.nav-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    white-space: nowrap;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: nowrap;
+}
+
+.nav-links a {
+    color: #d6e4f0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    color: #ffd166;
+}
+
+#langBtn {
+    background: linear-gradient(135deg, #ff7a59, #ff5722);
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.35);
+}
+
+#langBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(255, 87, 34, 0.45);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    margin: 48px 0 48px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 20px rgba(22, 83, 126, 0.28);
+}
+
+.hero-info h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    margin-bottom: 8px;
+    color: #0f3460;
+    font-weight: 700;
+}
+
+.hero-info p {
+    font-size: 1.1rem;
+    color: #374151;
+    margin-bottom: 12px;
+}
+
+.contact-links a {
+    display: inline-block;
+    margin-right: 14px;
+    color: #16537e;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.22s ease;
+}
+
+.contact-links a:hover {
+    color: #ff5722;
+}
+
+section {
+    margin-bottom: 52px;
+}
+
+h2 {
+    border-bottom: none;
+    padding-bottom: 10px;
+    margin-bottom: 22px;
+    color: #0f3460;
+    position: relative;
+    font-size: 1.4rem;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1e88e5, #ff7a59);
+}
+
+h2 i {
+    margin-right: 8px;
+    color: #ff5722;
+}
+
+.news-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.news-date {
+    min-width: 110px;
+    font-weight: 700;
+    color: #16537e;
+    background: #eaf4ff;
+    border-left: 3px solid #1e88e5;
+    padding: 2px 10px;
+    border-radius: 4px;
+}
+
+.edu-item,
+.intern-item,
+.pub-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(15, 52, 96, 0.08);
+    margin-bottom: 18px;
+    border-left: 4px solid #1e88e5;
+    transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.edu-item:hover,
+.intern-item:hover,
+.pub-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(15, 52, 96, 0.14);
+    border-left-color: #ff5722;
+}
+
+.edu-top,
+.intern-top,
+.pub-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.edu-school,
+.intern-company,
+.pub-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #0f3460;
+}
+
+.edu-time,
+.intern-time,
+.pub-year {
+    color: #ff5722;
+    font-weight: 700;
+    background: #fff1ec;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.pub-authors {
+    color: #374151;
+    font-size: 0.95rem;
+    margin: 6px 0;
+}
+
+.pub-authors strong {
+    color: #d63384;
+}
+
+.pub-links a {
+    color: #1e88e5;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: 600;
+    transition: color 0.22s ease;
+}
+
+.pub-links a:hover {
+    color: #ff5722;
+    text-decoration: underline;
+}
+
+.pub-links i {
+    margin-right: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 32px;
+    color: #4b5563;
+    font-size: 0.9rem;
+}
+
+/* 语言控制 */
+.zh {
+    display: none;
+}
+
+.en {
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: inline-flex;
     }
-});
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-    });
-});
-</script>
-</body>
-</html>
+
+    .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, #0f3460, #16537e);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 12px 20px 18px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+        display: none;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .news-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
