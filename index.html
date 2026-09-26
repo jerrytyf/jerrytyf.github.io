@@ -13,20 +13,19 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
-            background-color: #f8f9fa;
-            color: #212529;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #f7f9fc 0%, #edf2f7 100%);
+            color: #2d3748;
+            line-height: 1.7;
         }
-
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
             color: white;
             padding: 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
         }
-
         .header-inner {
             max-width: 1100px;
             margin: 0 auto;
@@ -37,32 +36,28 @@
             height: 64px;
             gap: 12px;
         }
-
         .nav-title {
             font-size: 1.2rem;
             font-weight: 600;
             white-space: nowrap;
+            color:#ecf0f1;
         }
-
         .nav-links {
             display: flex;
             align-items: center;
             gap: 18px;
             flex-wrap: nowrap;
         }
-
         .nav-links a {
-            color: #e9ecef;
+            color: #d0d7dc;
             text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            transition: color 0.25s ease;
             white-space: nowrap;
         }
-
         .nav-links a:hover {
-            color: #3498db;
+            color: #42a5f5;
         }
-
         #langBtn {
             background: #3498db;
             color: white;
@@ -72,12 +67,11 @@
             cursor: pointer;
             font-size: 0.9rem;
             white-space: nowrap;
+            transition: background-color 0.25s ease;
         }
-
         #langBtn:hover {
-            background: #2980b9;
+            background: #217dbb;
         }
-
         .menu-toggle {
             display: none;
             background: transparent;
@@ -86,13 +80,11 @@
             font-size: 1.2rem;
             cursor: pointer;
         }
-
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .hero {
             display: flex;
             gap: 32px;
@@ -100,47 +92,47 @@
             margin: 48px 0 48px;
             flex-wrap: wrap;
         }
-
         .avatar {
             width:180px;
             height:180px;
             border-radius:50%;
             object-fit:cover;
-            border:4px solid #fff;
-            box-shadow:0 2px 10px #00000020;
+            border:4px solid #ffffff;
+            box-shadow:0 4px 14px rgba(41, 128, 185, 0.22);
         }
-
         .hero-info h1 {
             font-size: clamp(1.6rem, 4vw, 2.2rem);
             margin-bottom:8px;
+            color:#1a2533;
         }
         .hero-info p {
             font-size:1.1rem;
-            color:#495057;
+            color:#4a5568;
             margin-bottom:12px;
         }
         .contact-links a{
             display:inline-block;
             margin-right:14px;
-            color:#2c3e50;
+            color:#2b6cb0;
             text-decoration:none;
             font-weight:500;
+            transition: color 0.22s ease;
         }
         .contact-links a:hover{
-            color:#3498db;
+            color:#2c5282;
         }
         section {
-            margin-bottom:48px;
+            margin-bottom:52px;
         }
         h2 {
-            border-bottom: 2px solid #dee2e6;
+            border-bottom: 2px solid #cbd5e0;
             padding-bottom:8px;
-            margin-bottom:20px;
+            margin-bottom:22px;
             color:#2c3e50;
         }
         h2 i {
             margin-right:8px;
-            color:#3498db;
+            color:#3182ce;
         }
         .news-item {
             display:flex;
@@ -150,38 +142,50 @@
         .news-date {
             min-width:110px;
             font-weight:600;
-            color:#6c757d;
+            color:#718096;
         }
         .edu-item, .intern-item, .pub-item {
             background:#ffffff;
-            padding:18px;
-            border-radius:10px;
-            box-shadow:0 1px 6px rgba(0,0,0,0.08);
-            margin-bottom:16px;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.07);
+            margin-bottom:18px;
+            transition: transform 0.24s ease, box-shadow 0.24s ease;
+        }
+        .edu-item:hover, .intern-item:hover, .pub-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
         }
         .edu-top, .intern-top, .pub-top {
             display:flex;
             justify-content:space-between;
-            margin-bottom:6px;
+            margin-bottom:8px;
         }
         .edu-school, .intern-company, .pub-title {
             font-weight:600;
             font-size:1.05rem;
+            color:#2d3748;
         }
         .edu-time, .intern-time, .pub-year {
-            color:#6c757d;
+            color:#718096;
+            font-weight:500;
         }
         .pub-authors {
-            color:#495057;
+            color:#4a5568;
             font-size:0.95rem;
-            margin:4px 0;
+            margin:6px 0;
+        }
+        .pub-authors strong {
+            color:#2b6cb0;
         }
         .pub-links a {
-            color:#3498db;
+            color:#3182ce;
             text-decoration:none;
             margin-right:10px;
+            transition: color 0.22s ease;
         }
         .pub-links a:hover{
+            color:#2c5282;
             text-decoration:underline;
         }
         .pub-links i{
@@ -189,14 +193,13 @@
         }
         footer {
             text-align:center;
-            padding:30px;
-            color:#6c757d;
+            padding:32px;
+            color:#718096;
             font-size:0.9rem;
         }
         /*语言控制*/
         .zh{display:none;}
         .en{display:block;}
-
         @media (max-width: 900px) {
             .menu-toggle {
                 display: inline-flex;
@@ -206,7 +209,7 @@
                 top: 64px;
                 left: 0;
                 right: 0;
-                background-color: #2c3e50;
+                background: linear-gradient(90deg, #2c3e50, #34495e);
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0;
@@ -223,7 +226,6 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             }
         }
-
         @media (max-width:768px){
             .hero{
                 flex-direction:column;
@@ -277,7 +279,6 @@
             </div>
         </div>
     </section>
-
     <!-- News 时间倒序 -->
     <section id="news">
         <h2><i class="fa-solid fa-bullhorn"></i> <span class="en">News</span><span class="zh">最新动态</span></h2>
@@ -299,7 +300,7 @@
             <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jul‑Sep 2025</div>
             <div>
                 <span class="en">Worked as Algorithm Intern at Meiya Pico Large Model R&D Center.</span>
-                <span class="zh">于梅亚奇大模型研发中心担任算法实习生。</span>
+                <span class="zh">于美亚柏科大模型研发中心担任算法实习生。</span>
             </div>
         </div>
         <div class="news-item">
@@ -310,7 +311,6 @@
             </div>
         </div>
     </section>
-
     <!-- Education -->
     <section id="education">
         <h2><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></h2>
@@ -325,7 +325,6 @@
             </p>
         </div>
     </section>
-
     <!-- Internship -->
     <section id="internship">
         <h2><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></h2>
@@ -341,7 +340,6 @@
             </p>
         </div>
     </section>
-
     <!-- Publications -->
     <section id="publications">
         <h2><i class="fa-solid fa-file-lines"></i> <span class="en">Publications</span><span class="zh">论文成果</span></h2>
@@ -374,7 +372,6 @@
             </div>
         </div>
     </section>
-
     <!-- Projects -->
     <section id="projects">
         <h2><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></h2>
@@ -403,14 +400,11 @@
 <footer>
     <p><i class="fa-solid fa-copyright"></i> 2026 Yufeng Tang. Last updated: Aug 4, 2026</p>
 </footer>
-
 <script>
 const langBtn = document.getElementById('langBtn');
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-
 let isEn = true;
-
 langBtn.addEventListener('click', () => {
     isEn = !isEn;
     if (isEn) {
@@ -423,11 +417,9 @@ langBtn.addEventListener('click', () => {
         langBtn.innerText = "English";
     }
 });
-
 menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
-
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('open');
