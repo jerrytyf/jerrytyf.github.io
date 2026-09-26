@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jerry Tang | Homepage</title>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -93,6 +95,10 @@
             margin-bottom:20px;
             color:#2c3e50;
         }
+        h2 i {
+            margin-right:8px;
+            color:#3498db;
+        }
         .news-item {
             display:flex;
             gap:16px;
@@ -135,6 +141,9 @@
         .pub-links a:hover{
             text-decoration:underline;
         }
+        .pub-links i{
+            margin-right:4px;
+        }
         footer {
             text-align:center;
             padding:30px;
@@ -171,12 +180,12 @@
     <nav>
         <div class="nav-title">Jerry Tang</div>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#news">News</a>
-            <a href="#education">Education</a>
-            <a href="#internship">Internship</a>
-            <a href="#publications">Publications</a>
-            <a href="#projects">Projects</a>
+            <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+            <a href="#news"><i class="fa-solid fa-newspaper"></i> News</a>
+            <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+            <a href="#internship"><i class="fa-solid fa-briefcase"></i> Internship</a>
+            <a href="#publications"><i class="fa-solid fa-file-pdf"></i> Publications</a>
+            <a href="#projects"><i class="fa-solid fa-rocket"></i> Projects</a>
         </div>
     </nav>
 </header>
@@ -187,40 +196,40 @@
         <img class="avatar" src="https://via.placeholder.com/180" alt="avatar">
         <div class="hero-info">
             <h1>Jerry Tang</h1>
-            <p>Student | Research Enthusiast</p>
+            <p><i class="fa-solid fa-laptop"></i> Student | Research Enthusiast</p>
             <p>Short bio: Write your self-introduction here. Research interests: AI, Machine Learning, Computer Vision, etc.</p>
             <div class="contact-links">
-                <a href="mailto:yourmail@example.com">Email</a>
-                <a href="https://github.com/jerrytyf">GitHub</a>
-                <a href="#">Google Scholar</a>
-                <a href="#">LinkedIn</a>
+                <a href="mailto:yourmail@example.com"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="https://github.com/jerrytyf"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="#"><i class="fa-solid fa-book"></i> Google Scholar</a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             </div>
         </div>
     </section>
 
     <!-- News -->
     <section id="news">
-        <h2>📰 News</h2>
+        <h2><i class="fa-solid fa-bullhorn"></i> News</h2>
         <div class="news-item">
-            <div class="news-date">Sep 2026</div>
+            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Sep 2026</div>
             <div>Started my research project on Large Language Models.</div>
         </div>
         <div class="news-item">
-            <div class="news-date">Jul 2026</div>
+            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jul 2026</div>
             <div>Joined XXX lab as a research assistant.</div>
         </div>
         <div class="news-item">
-            <div class="news-date">May 2026</div>
+            <div class="news-date"><i class="fa-solid fa-calendar-days"></i> May 2026</div>
             <div>Paper accepted to XXX conference!</div>
         </div>
     </section>
 
     <!-- Education -->
     <section id="education">
-        <h2>🎓 Education</h2>
+        <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
         <div class="edu-item">
             <div class="edu-top">
-                <span class="edu-school">University of XXX, Bachelor of Science</span>
+                <span class="edu-school"><i class="fa-solid fa-school"></i> University of XXX, Bachelor of Science</span>
                 <span class="edu-time">Sep 2022 - Jun 2026</span>
             </div>
             <p>Major: Computer Science and Technology<br>GPA: X.X/4.0 | Honors: Merit Scholarship</p>
@@ -229,10 +238,10 @@
 
     <!-- Internship -->
     <section id="internship">
-        <h2>💼 Internship</h2>
+        <h2><i class="fa-solid fa-briefcase"></i> Internship</h2>
         <div class="intern-item">
             <div class="intern-top">
-                <span class="intern-company">XXX Tech | AI Research Intern</span>
+                <span class="intern-company"><i class="fa-solid fa-building"></i> XXX Tech | AI Research Intern</span>
                 <span class="intern-time">Jun 2025 - Sep 2025</span>
             </div>
             <p>Worked on multimodal model optimization. Responsible for data preprocessing and model evaluation.
@@ -242,7 +251,7 @@
 
     <!-- Publications -->
     <section id="publications">
-        <h2>📄 Publications</h2>
+        <h2><i class="fa-solid fa-file-lines"></i> Publications</h2>
         <div class="pub-item">
             <div class="pub-top">
                 <span class="pub-title">Paper Title: A Cool Work on Multimodal Understanding</span>
@@ -251,19 +260,19 @@
             <div class="pub-authors"><strong>Jerry Tang</strong>, Co-author A, Co-author B</div>
             <div>Conference: XXX Conference (CCF-A)</div>
             <div class="pub-links">
-                <a href="#">Paper PDF</a>
-                <a href="#">Code</a>
-                <a href="#">BibTeX</a>
+                <a href="#"><i class="fa-solid fa-file-pdf"></i>Paper PDF</a>
+                <a href="#"><i class="fa-solid fa-code"></i>Code</a>
+                <a href="#"><i class="fa-solid fa-quote-right"></i>BibTeX</a>
             </div>
         </div>
     </section>
 
     <!-- Projects -->
     <section id="projects">
-        <h2>🚀 Projects</h2>
+        <h2><i class="fa-solid fa-rocket"></i> Projects</h2>
         <div class="edu-item">
             <div class="edu-top">
-                <span class="edu-school">Personal Project: Web-based AI Demo</span>
+                <span class="edu-school"><i class="fa-solid fa-folder-open"></i> Personal Project: Web-based AI Demo</span>
                 <span class="edu-time">2025</span>
             </div>
             <p>Built a static web demo for image classification. Tech stack: HTML, CSS, JS, ONNX Runtime.<br>
@@ -273,7 +282,7 @@
 </div>
 
 <footer>
-    <p>© 2026 Jerry Tang. Last updated: Sep 2026</p>
+    <p><i class="fa-solid fa-copyright"></i> 2026 Jerry Tang. Last updated: Sep 2026</p>
 </footer>
 </body>
 </html>
