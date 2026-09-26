@@ -17,64 +17,90 @@
             color: #212529;
             line-height: 1.6;
         }
+
         header {
             background-color: #2c3e50;
             color: white;
-            padding: 1.2rem 0;
+            padding: 0;
             position: sticky;
-            top:0;
+            top: 0;
             z-index: 100;
         }
-        nav {
+
+        .header-inner {
             max-width: 1100px;
             margin: 0 auto;
+            padding: 0 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding:0 20px;
+            justify-content: space-between;
+            height: 64px;
+            gap: 12px;
         }
-        .nav-left{
-            display:flex;
-            align-items:center;
-            gap:24px;
-        }
+
         .nav-title {
-            font-size:1.4rem;
-            font-weight:600;
+            font-size: 1.2rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
+
         .nav-links a {
             color: #e9ecef;
-            text-decoration:none;
-            margin-left:24px;
+            text-decoration: none;
+            font-size: 0.95rem;
             transition: color 0.2s;
+            white-space: nowrap;
         }
+
         .nav-links a:hover {
-            color:#3498db;
+            color: #3498db;
         }
-        #langBtn{
-            background:#3498db;
-            color:white;
-            border:none;
-            padding:6px 12px;
-            border-radius:6px;
-            cursor:pointer;
-            font-size:0.9rem;
+
+        #langBtn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
-        #langBtn:hover{
-            background:#2980b9;
+
+        #langBtn:hover {
+            background: #2980b9;
         }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
         .container {
-            max-width:1100px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
+
         .hero {
-            display:flex;
-            gap:32px;
-            align-items:center;
-            margin-bottom:48px;
-            flex-wrap:wrap;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 48px 0 48px;
+            flex-wrap: wrap;
         }
+
         .avatar {
             width:180px;
             height:180px;
@@ -83,8 +109,9 @@
             border:4px solid #fff;
             box-shadow:0 2px 10px #00000020;
         }
+
         .hero-info h1 {
-            font-size:2.2rem;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
             margin-bottom:8px;
         }
         .hero-info p {
@@ -166,9 +193,36 @@
             color:#6c757d;
             font-size:0.9rem;
         }
-        /* 语言显示控制 */
+        /*语言控制*/
         .zh{display:none;}
         .en{display:block;}
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: inline-flex;
+            }
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background-color: #2c3e50;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 12px 20px 18px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                display: none;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 10px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        }
 
         @media (max-width:768px){
             .hero{
@@ -179,42 +233,26 @@
                 flex-direction:column;
                 gap:4px;
             }
-            nav{
-                flex-direction:column;
-                gap:12px;
-            }
-            .nav-left{
-                width:100%;
-                justify-content:space-between;
-            }
-            .nav-links{
-                display:flex;
-                flex-wrap:wrap;
-                justify-content:center;
-                gap:10px;
-            }
-            .nav-links a{
-                margin:0 8px;
-            }
         }
     </style>
 </head>
 <body>
 <header>
-    <nav>
-        <div class="nav-left">
-            <div class="nav-title">Yufeng Tang</div>
-            <div class="nav-links">
-                <a href="#about"><i class="fa-solid fa-user"></i> <span class="en">About</span><span class="zh">关于我</span></a>
-                <a href="#news"><i class="fa-solid fa-newspaper"></i> <span class="en">News</span><span class="zh">最新动态</span></a>
-                <a href="#education"><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></a>
-                <a href="#internship"><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></a>
-                <a href="#publications"><i class="fa-solid fa-file-pdf"></i> <span class="en">Publications</span><span class="zh">论文成果</span></a>
-                <a href="#projects"><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></a>
-            </div>
-        </div>
+    <div class="header-inner">
+        <div class="nav-title">Yufeng Tang</div>
         <button id="langBtn">中文</button>
-    </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#about"><i class="fa-solid fa-user"></i> <span class="en">About</span><span class="zh">关于我</span></a>
+            <a href="#news"><i class="fa-solid fa-newspaper"></i> <span class="en">News</span><span class="zh">最新动态</span></a>
+            <a href="#education"><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></a>
+            <a href="#internship"><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></a>
+            <a href="#publications"><i class="fa-solid fa-file-pdf"></i> <span class="en">Publications</span><span class="zh">论文成果</span></a>
+            <a href="#projects"><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></a>
+        </nav>
+    </div>
 </header>
 <div class="container">
     <!-- About Me -->
@@ -240,7 +278,7 @@
         </div>
     </section>
 
-    <!-- News 时间倒序：Jun2026 → Feb2026 → Jul‑Sep2025 → Jun2024‑Feb2025 -->
+    <!-- News 时间倒序 -->
     <section id="news">
         <h2><i class="fa-solid fa-bullhorn"></i> <span class="en">News</span><span class="zh">最新动态</span></h2>
         <div class="news-item">
@@ -261,14 +299,14 @@
             <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jul‑Sep 2025</div>
             <div>
                 <span class="en">Worked as Algorithm Intern at Meiya Pico Large Model R&D Center.</span>
-                <span class="zh">于美亚柏科大模型研发中心担任算法实习生。</span>
+                <span class="zh">于梅亚奇大模型研发中心担任算法实习生。</span>
             </div>
         </div>
         <div class="news-item">
             <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jun 2024‑Feb 2025</div>
             <div>
                 <span class="en">Submitted first‑author paper to CVPR for peer review (under review).</span>
-                <span class="zh">以第一作者向CVPR投递论文，目前该论文处于在投状态。</span>
+                <span class="zh">以第一作者向CVPR投递论文，目前处于审稿中。</span>
             </div>
         </div>
     </section>
@@ -367,20 +405,34 @@
 </footer>
 
 <script>
-    const btn = document.getElementById('langBtn');
-    let isEn = true;
-    btn.addEventListener('click',()=>{
-        isEn = !isEn;
-        if(isEn){
-            document.querySelectorAll('.en').forEach(el=>el.style.display='block');
-            document.querySelectorAll('.zh').forEach(el=>el.style.display='none');
-            btn.innerText = "中文";
-        }else{
-            document.querySelectorAll('.en').forEach(el=>el.style.display='none');
-            document.querySelectorAll('.zh').forEach(el=>el.style.display='block');
-            btn.innerText = "English";
-        }
-    })
+const langBtn = document.getElementById('langBtn');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+let isEn = true;
+
+langBtn.addEventListener('click', () => {
+    isEn = !isEn;
+    if (isEn) {
+        document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
+        langBtn.innerText = "中文";
+    } else {
+        document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
+        langBtn.innerText = "English";
+    }
+});
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+    });
+});
 </script>
 </body>
 </html>
