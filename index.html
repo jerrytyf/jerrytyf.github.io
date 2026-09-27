@@ -1,620 +1,1108 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerry Tang | Homepage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+<html lang="en" data-page-node-id="Pq8nZUX5FfyXJ4xXHJRLRg">
+<head data-page-node-id="8AKD7hS7D8eXoJMKX22Ory">
+<meta charset="UTF-8" data-page-node-id="6I0WLJFKAfZ0hJuInYq3Uo" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="CqRTr33REAUFeagUP58TDb" />
+<title>NUS Summer Workshop 2026 — Visual Computing · Yufeng Tang</title>
+<meta name="description" content="My experience at the NUS School of Computing Summer Workshop 2026 — the Visual Computing course and Group 5's Third-Prize project, Real-Time Video Analysis and Rendering (SignVerse)." data-page-node-id="GTv71JPWduXB0HzKHf5p34" />
+<meta name="author" content="Yufeng Tang" data-page-node-id="CTbqjcgAI185FyZHvnBPIP" />
+<meta property="og:title" content="NUS School of Computing Summer Workshop 2026 — Visual Computing" data-page-node-id="6hNdF3dOcJuhLMtdoncGMP" />
+<meta property="og:description" content="Third-Prize project: Real-Time Video Analysis and Rendering — SignVerse, a real-time sign-language interface for Deaf and hard-of-hearing users." data-page-node-id="SR3Bab9iIDXOcMDmM8xnMk" />
+<meta property="og:image" content="assets/signverse-concept.jpg" data-page-node-id="lFGd6JebMSYns3iFv2RCUx" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a2a54'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Arial' font-weight='bold' fill='%23ef7c00' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E" data-page-node-id="oDi7IBDPWA7h8hYt6Zx7FC" />
+<link rel="preconnect" href="https://fonts.googleapis.com" data-page-node-id="chkRRqvYkrQyJjBE0nexaC">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-page-node-id="xsvRJORBdQmgyLdocjMkFD">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" data-page-node-id="xwA51Hz8UuIhV1jg3fHQX6">
+<style>
+:root{
+  --navy-900:#061a34;
+  --navy-800:#0a2a54;
+  --navy-700:#0f3a70;
+  --navy-600:#134a8c;
+  --orange:#ef7c00;
+  --orange-soft:#ffb25e;
+  --teal:#12c9b4;
+  --blue:#3f63ff;
+  --ink:#132038;
+  --ink-2:#3d4f6b;
+  --muted:#6b7c96;
+  --line:#e3e9f2;
+  --bg:#f5f8fc;
+  --card:#ffffff;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow-sm:0 1px 2px rgba(15,42,84,.06), 0 2px 8px rgba(15,42,84,.05);
+  --shadow-md:0 10px 30px -12px rgba(15,42,84,.22), 0 4px 12px rgba(15,42,84,.06);
+  --shadow-lg:0 30px 70px -30px rgba(9,30,60,.42);
+  --maxw:1180px;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Microsoft YaHei',sans-serif;
+  --display:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16.5px;line-height:1.68;
+  font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--navy-600);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;margin:0;letter-spacing:-.02em;font-weight:600}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.narrow{max-width:900px;margin:0 auto}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  background:rgba(6,20,40,.72);backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:background .3s ease, box-shadow .3s ease;
+}
+.nav.solid{background:rgba(6,20,40,.94);box-shadow:0 10px 30px -18px rgba(0,0,0,.7)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:11px 26px;display:flex;align-items:center;gap:18px}
+.nav-brand{display:flex;align-items:center;gap:11px;color:#fff;font-weight:600;letter-spacing:-.01em;min-width:0}
+.nav-brand img{height:30px;width:auto;flex:none}
+.nav-brand span{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-brand span b{color:var(--orange-soft);font-weight:600}
+.nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{
+  color:rgba(255,255,255,.78);font-size:13.5px;font-weight:500;padding:8px 11px;border-radius:9px;
+  text-decoration:none;transition:.2s;white-space:nowrap
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.10);text-decoration:none}
+@media(max-width:960px){.nav-links{display:none}}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;color:#fff;overflow:hidden;isolation:isolate;
+  padding:158px 0 84px;
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(18,201,180,.20), transparent 62%),
+    radial-gradient(900px 520px at 92% 4%, rgba(63,99,255,.24), transparent 60%),
+    linear-gradient(160deg,#061a34 0%, #0a2a54 52%, #07203f 100%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px, transparent 1.2px);
+  background-size:26px 26px;mask-image:linear-gradient(180deg,#000,transparent 78%);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 78%);
+}
+.hero-rule{height:4px;background:linear-gradient(90deg,var(--orange),#ffbe63 30%,rgba(255,255,255,0) 78%);width:210px;border-radius:4px;margin-bottom:26px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.74);margin-bottom:18px
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(18,201,180,.18)}
+.hero h1{font-size:clamp(2.35rem,6.1vw,4.15rem);font-weight:700;letter-spacing:-.035em;margin-bottom:20px;max-width:16ch}
+.hero h1 .grad{
+  background:linear-gradient(96deg,var(--teal),#6fa8ff 55%,#9d8cff);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero-lead{font-size:clamp(1.02rem,2vw,1.22rem);color:rgba(255,255,255,.82);max-width:60ch;margin-bottom:30px;font-weight:300;line-height:1.72}
+.badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:34px}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.8px;font-weight:600;
+  padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.94);backdrop-filter:blur(4px)
+}
+.badge.prize{background:linear-gradient(100deg,rgba(239,124,0,.30),rgba(255,178,94,.14));border-color:rgba(255,178,94,.5);color:#ffdfae}
+.badge.grade{background:linear-gradient(100deg,rgba(18,201,180,.28),rgba(63,99,255,.14));border-color:rgba(18,201,180,.5);color:#b6f4ec}
+.cta{display:flex;flex-wrap:wrap;gap:13px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 23px;border-radius:11px;
+  font-weight:600;font-size:14.5px;text-decoration:none;transition:.22s;border:1px solid transparent
+}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 12px 26px -12px rgba(239,124,0,.85)}
+.btn-primary:hover{background:#ff8b1a;transform:translateY(-2px);text-decoration:none;color:#fff}
+.btn-ghost{background:rgba(255,255,255,.07);color:#fff;border-color:rgba(255,255,255,.24)}
+.btn-ghost:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);text-decoration:none;color:#fff}
+
+.stats{
+  margin-top:60px;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden
+}
+.stat{background:rgba(6,20,40,.42);padding:20px 18px;backdrop-filter:blur(6px)}
+.stat b{display:block;font-family:var(--display);font-size:clamp(1.35rem,3.1vw,1.95rem);font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1.1}
+.stat span{font-size:11.6px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:600;display:block;margin-top:6px}
+@media(max-width:880px){.stats{grid-template-columns:repeat(2,1fr)}.stat:last-child{grid-column:1/-1}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:86px 0}
+section.tight{padding:62px 0}
+.sec-head{max-width:760px;margin-bottom:44px}
+.sec-eyebrow{
+  font-size:12.4px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px
+}
+.sec-eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);border-radius:2px}
+.sec-head h2{font-size:clamp(1.72rem,4vw,2.5rem);color:var(--navy-800);margin-bottom:14px;font-weight:700}
+.sec-head p{color:var(--ink-2);font-size:1.045rem;margin:0}
+.bg-white{background:#fff}
+.bg-deep{background:linear-gradient(165deg,#061a34,#0a2a54 60%,#08243f);color:#fff}
+.bg-deep .sec-head h2{color:#fff}
+.bg-deep .sec-head p{color:rgba(255,255,255,.76)}
+.bg-deep .sec-eyebrow{color:var(--orange-soft)}
+.bg-deep .sec-eyebrow::before{background:var(--orange-soft)}
+
+/* ---------- CARDS / GRIDS ---------- */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:960px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow-sm);transition:.26s;position:relative;overflow:hidden
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#cfdcec}
+.card h3{font-size:1.09rem;color:var(--navy-800);margin-bottom:9px;font-weight:600}
+.card p{color:var(--ink-2);font-size:.945rem;margin:0}
+.card .ico{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;
+  background:linear-gradient(140deg,rgba(18,201,180,.16),rgba(63,99,255,.14));color:var(--navy-700)
+}
+.card .ico svg{width:21px;height:21px}
+.k-num{
+  font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--orange);letter-spacing:.1em;
+}
+.bg-deep .card{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.13);box-shadow:none}
+.bg-deep .card:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.085)}
+.bg-deep .card h3{color:#fff}
+.bg-deep .card p{color:rgba(255,255,255,.72)}
+.bg-deep .card .ico{background:linear-gradient(140deg,rgba(18,201,180,.24),rgba(63,99,255,.2));color:#fff}
+
+/* figure / media blocks */
+.figure{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-md);cursor:zoom-in
+}
+.figure img{width:100%;height:auto;transition:transform .5s ease}
+.figure:hover img{transform:scale(1.018)}
+.figure figcaption{padding:13px 17px;font-size:.83rem;color:var(--muted);border-top:1px solid var(--line);background:#fbfcfe}
+.bg-deep .figure{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);box-shadow:none}
+.bg-deep .figure figcaption{background:rgba(0,0,0,.18);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.66)}
+.figrow{display:grid;gap:20px}
+.mt{margin-top:22px}
+.center{text-align:center}
+
+/* split */
+.split{display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:34px}}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm)}
+table.cmp{width:100%;border-collapse:collapse;font-size:.92rem;min-width:560px}
+table.cmp th,table.cmp td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+table.cmp thead th{background:linear-gradient(180deg,#f7fafe,#eef4fb);color:var(--navy-800);font-weight:600;font-size:.86rem;letter-spacing:.02em}
+table.cmp tbody tr:last-child td{border-bottom:none}
+table.cmp td:first-child{font-weight:600;color:var(--ink)}
+table.cmp .win{color:var(--navy-700);font-weight:600}
+.pill-old{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a94a8;background:#f0f3f8;border-radius:6px;padding:3px 8px}
+.pill-new{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0b7d6e;background:rgba(18,201,180,.14);border-radius:6px;padding:3px 8px}
+
+/* pipeline steps */
+.steps{display:grid;gap:14px;counter-reset:s}
+.step{
+  display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);transition:.24s
+}
+.step:hover{border-color:#cfdcec;transform:translateX(4px)}
+.step .n{
+  flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  font-weight:700;font-size:.85rem;color:#fff;background:linear-gradient(140deg,var(--navy-700),var(--blue));
+  font-family:var(--display)
+}
+.step h4{font-size:.99rem;color:var(--navy-800);margin-bottom:5px;font-weight:600}
+.step p{margin:0;font-size:.9rem;color:var(--ink-2)}
+.bg-deep .step{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.13);box-shadow:none}
+.bg-deep .step:hover{background:rgba(255,255,255,.085)}
+.bg-deep .step h4{color:#fff}
+.bg-deep .step p{color:rgba(255,255,255,.72)}
+
+/* formula */
+.formula{
+  background:linear-gradient(140deg,#07203f,#0a2a54);color:#fff;border-radius:14px;padding:19px 22px;
+  font-family:var(--display);font-size:1rem;letter-spacing:.01em;border:1px solid rgba(255,255,255,.12);
+  overflow-x:auto
+}
+.formula .hl{color:var(--teal);font-weight:600}
+.formula .hl2{color:var(--orange-soft);font-weight:600}
+.formula small{display:block;font-family:var(--sans);font-size:.8rem;color:rgba(255,255,255,.6);margin-top:9px;letter-spacing:0}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-size:.86rem;font-weight:600;padding:8px 15px;border-radius:999px;background:#eef4fb;
+  color:var(--navy-700);border:1px solid #dbe6f3
+}
+.bg-deep .chip{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.16)}
+.emojis{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}
+.emo{
+  border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;gap:7px
+}
+.emo .nm{font-weight:600;color:var(--navy-800);font-size:.93rem;display:flex;align-items:center;gap:8px}
+.emo .nm i{width:9px;height:9px;border-radius:50%;flex:none}
+.emo .fx{font-size:.815rem;color:var(--ink-2);line-height:1.5}
+.bg-deep .emo{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.13)}
+.bg-deep .emo .nm{color:#fff}
+.bg-deep .emo .fx{color:rgba(255,255,255,.7)}
+
+/* quote */
+.quote{
+  border-left:4px solid var(--teal);padding:6px 0 6px 24px;font-size:1.13rem;color:#eaf2ff;
+  font-weight:300;font-style:italic;line-height:1.66;max-width:62ch
 }
 
-body {
-    background: linear-gradient(135deg, #eef6ff 0%, #f7fbff 45%, #fff7ed 100%);
-    color: #1f2937;
-    line-height: 1.7;
-}
+/* logos */
+.brandrow{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.logo-light{background:#fff;border-radius:16px;padding:18px 22px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.logo-light img{height:64px;width:auto}
 
-header {
-    background: linear-gradient(90deg, #0f3460 0%, #16537e 50%, #1e88e5 100%);
-    color: white;
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 14px rgba(15, 52, 96, 0.25);
+/* team */
+.member{display:flex;gap:16px;align-items:flex-start}
+.member .av{
+  flex:none;width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:#fff;font-weight:700;
+  font-family:var(--display);font-size:1.06rem;background:linear-gradient(140deg,var(--navy-700),var(--blue))
 }
+.member.me .av{background:linear-gradient(140deg,var(--orange),#ffb25e)}
+.member h3{margin-bottom:3px}
+.member .uni{font-size:.855rem;color:var(--muted);font-weight:500}
+.member .tag{display:inline-block;margin-top:9px;font-size:11.4px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--orange);background:rgba(239,124,0,.1);padding:3px 9px;border-radius:6px}
 
-.header-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    gap: 12px;
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.gitem{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);cursor:zoom-in;background:#0a2a54}
+.gitem img{width:100%;height:262px;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gitem:hover img{transform:scale(1.06)}
+.gitem figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:26px 16px 13px;color:#fff;font-size:.82rem;
+  background:linear-gradient(to top,rgba(6,20,40,.88),transparent);font-weight:500
 }
+.gitem.wide{grid-column:span 2}
+@media(max-width:900px){.gitem.wide{grid-column:span 2}}
+@media(max-width:560px){.gitem.wide{grid-column:span 1}}
 
-.nav-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    white-space: nowrap;
-    color: #ffffff;
-    letter-spacing: 0.3px;
-}
+/* cert */
+.certgrid{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;align-items:start}
+@media(max-width:880px){.certgrid{grid-template-columns:1fr}}
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: nowrap;
+/* lightbox */
+.lb{
+  position:fixed;inset:0;z-index:200;background:rgba(4,12,26,.94);display:none;
+  align-items:center;justify-content:center;padding:32px;cursor:zoom-out;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)
 }
+.lb.open{display:flex;animation:fade .25s ease}
+.lb img{max-width:96vw;max-height:88vh;width:auto;border-radius:10px;box-shadow:0 40px 90px -30px #000}
+.lb.tall{overflow:auto;align-items:flex-start;padding:30px 32px 60px}
+.lb.tall img{max-height:none;max-width:min(94vw,880px)}
+.lb .cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-size:.85rem;padding:0 24px}
+.lb .close{position:absolute;top:20px;right:24px;color:#fff;font-size:30px;line-height:1;width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.1);display:grid;place-items:center;border:none;cursor:pointer}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
-.nav-links a {
-    color: #d6e4f0;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.25s ease;
-    white-space: nowrap;
-}
+/* footer */
+.footer{background:#061a34;color:rgba(255,255,255,.66);padding:50px 0 34px;font-size:.9rem}
+.footer .frow{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.footer h4{color:#fff;font-size:.95rem;margin-bottom:10px;font-weight:600}
+.footer a{color:rgba(255,255,255,.78)}
+.footer a:hover{color:#fff}
+.footer .flinks{display:flex;flex-direction:column;gap:7px}
+.footer .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:32px;padding-top:20px;font-size:.82rem;color:rgba(255,255,255,.45);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer .nav-brand img{height:26px}
 
-.nav-links a:hover {
-    color: #ffd166;
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.figure:hover img,.gitem:hover img{transform:none}}
+.note{
+  font-size:.83rem;color:var(--muted);border-left:3px solid var(--line);padding:2px 0 2px 14px;margin-top:16px
 }
-
-#langBtn {
-    background: linear-gradient(135deg, #ff7a59, #ff5722);
-    color: white;
-    border: none;
-    padding: 7px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.35);
-}
-
-#langBtn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(255, 87, 34, 0.45);
-}
-
-.menu-toggle {
-    display: none;
-    background: transparent;
-    color: white;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.hero {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-    margin: 48px 0 48px;
-    flex-wrap: wrap;
-}
-
-.avatar {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #ffffff;
-    box-shadow: 0 8px 20px rgba(22, 83, 126, 0.28);
-}
-
-.hero-info h1 {
-    font-size: clamp(1.7rem, 4vw, 2.3rem);
-    margin-bottom: 8px;
-    color: #0f3460;
-    font-weight: 700;
-}
-
-.hero-info p {
-    font-size: 1.1rem;
-    color: #374151;
-    margin-bottom: 12px;
-}
-
-.contact-links a {
-    display: inline-block;
-    margin-right: 14px;
-    color: #16537e;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.22s ease;
-}
-
-.contact-links a:hover {
-    color: #ff5722;
-}
-
-section {
-    margin-bottom: 52px;
-}
-
-h2 {
-    border-bottom: none;
-    padding-bottom: 10px;
-    margin-bottom: 22px;
-    color: #0f3460;
-    position: relative;
-    font-size: 1.4rem;
-}
-
-h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 64px;
-    height: 4px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #1e88e5, #ff7a59);
-}
-
-h2 i {
-    margin-right: 8px;
-    color: #ff5722;
-}
-
-.news-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
-}
-
-.news-date {
-    min-width: 110px;
-    font-weight: 700;
-    color: #16537e;
-    background: #eaf4ff;
-    border-left: 3px solid #1e88e5;
-    padding: 2px 10px;
-    border-radius: 4px;
-}
-
-/* news分页控制按钮 */
-.news-pagination{
-    display:flex;
-    gap:12px;
-    margin-top:20px;
-    align-items:center;
-}
-.news-pagination button{
-    padding:6px 14px;
-    border-radius:6px;
-    border:none;
-    background:#1e88e5;
-    color:white;
-    cursor:pointer;
-    transition:0.2s;
-}
-.news-pagination button:disabled{
-    background:#b0c4de;
-    cursor:not-allowed;
-}
-.news-pagination button:hover:not(:disabled){
-    background:#16537e;
-}
-.news-page-info{
-    font-weight:500;
-    color:#2c3e50;
-}
-
-.edu-item,
-.intern-item,
-.pub-item {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(15, 52, 96, 0.08);
-    margin-bottom: 18px;
-    border-left: 4px solid #1e88e5;
-    transition: transform 0.24s ease, box-shadow 0.24s ease;
-}
-
-.edu-item:hover,
-.intern-item:hover,
-.pub-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(15, 52, 96, 0.14);
-    border-left-color: #ff5722;
-}
-
-.edu-top,
-.intern-top,
-.pub-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.edu-school,
-.intern-company,
-.pub-title {
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: #0f3460;
-}
-
-.edu-time,
-.intern-time,
-.pub-year {
-    color: #ff5722;
-    font-weight: 700;
-    background: #fff1ec;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
-
-.pub-authors {
-    color: #374151;
-    font-size: 0.95rem;
-    margin: 6px 0;
-}
-
-.pub-authors strong {
-    color: #d63384;
-}
-
-.pub-links a {
-    color: #1e88e5;
-    text-decoration: none;
-    margin-right: 10px;
-    font-weight: 600;
-    transition: color 0.22s ease;
-}
-
-.pub-links a:hover {
-    color: #ff5722;
-    text-decoration: underline;
-}
-
-.pub-links i {
-    margin-right: 4px;
-}
-
-footer {
-    text-align: center;
-    padding: 32px;
-    color: #4b5563;
-    font-size: 0.9rem;
-}
-
-/* 语言控制 */
-.zh {
-    display: none;
-}
-
-.en {
-    display: block;
-}
-
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: inline-flex;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: linear-gradient(180deg, #0f3460, #16537e);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        padding: 12px 20px 18px;
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
-        display: none;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links a {
-        padding: 10px 0;
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .news-item {
-        flex-direction: column;
-        gap: 4px;
-    }
-    .news-pagination{
-        flex-wrap:wrap;
-    }
-}
-    </style>
+.bg-deep .note{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2)}
+</style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
-<header>
-    <div class="header-inner">
-        <div class="nav-title">Yufeng Tang</div>
-        <button id="langBtn">中文</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <nav class="nav-links" id="navLinks">
-            <a href="#about"><i class="fa-solid fa-user"></i> <span class="en">About</span><span class="zh">关于我</span></a>
-            <a href="#news"><i class="fa-solid fa-newspaper"></i> <span class="en">News</span><span class="zh">最新动态</span></a>
-            <a href="#education"><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></a>
-            <a href="#internship"><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></a>
-            <a href="#publications"><i class="fa-solid fa-file-pdf"></i> <span class="en">Publications</span><span class="zh">论文成果</span></a>
-            <a href="#projects"><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></a>
-        </nav>
+<body data-page-node-id="k9Fh1F5OLLh0IEzZm4UGv1">
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav" data-page-node-id="Dkku7Out524NVkf0dSruCJ">
+  <div class="nav-inner" data-page-node-id="cCGqSSnqA3inTpDOqWe2uv">
+    <a class="nav-brand" href="#top" data-page-node-id="MCH6FYH4ZcDas0txUDlOxz">
+      <img src="assets/nus-soc-logo-white.png" alt="NUS School of Computing" data-page-node-id="OuE9NF5nhwtoImMhHbxB3P" />
+      <span data-page-node-id="eiEW53zT9dMhwQWvri29cP">Summer Workshop 2026 &middot; <b data-page-node-id="rjcI1GFc4rgW7DhymEahlg">Visual Computing</b></span>
+    </a>
+    <div class="nav-links" data-page-node-id="ytYV7FqI8Svo7iPdJEADV2">
+      <a href="#overview" data-page-node-id="Mk7gaSdRHOKBApE9XpjaRk">Overview</a>
+      <a href="#program" data-page-node-id="c63DYMyIOumxHptBAylAYW">The Programme</a>
+      <a href="#project" data-page-node-id="XzQaDzAhnxqNVjSUDRA33b">Project</a>
+      <a href="#poster" data-page-node-id="gZhgoigGtSD9W2qAbsmGPv">Poster</a>
+      <a href="#beginning" data-page-node-id="UtkPV7Q06IIqorpyF0yG26">Face Detection</a>
+      <a href="#expert" data-page-node-id="oL96dZFu9VfdtwMGcfBExo">Expression &amp; Effects</a>
+      <a href="#bonus" data-page-node-id="qVV2lsE1vrYnjPI397Mbes">Dance &amp; Gestures</a>
+      <a href="#signverse" data-page-node-id="2Bsswqi92gP9q7A6V0FN9U">SignVerse</a>
+      <a href="#recognition" data-page-node-id="VxBzB9mENHDFGwiDcRkqTf">Recognition</a>
+      <a href="#gallery" data-page-node-id="43Grppx94zH6igNKCFDGXK">Gallery</a>
     </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top" data-page-node-id="3EEgQwaK1nYZfqoaHtyO7t">
+  <div class="wrap" data-page-node-id="7TZsbYZJbxGqKx3TAjilkN">
+    <div class="hero-rule" data-page-node-id="TWmApTAdit0sO6eE5QgNpq"></div>
+    <div class="eyebrow" data-page-node-id="BKHgrSteUoyePVLQYqxBqH"><span class="dot" data-page-node-id="DmvJUSczMK9jL6oRkaHzeu"></span> National University of Singapore &middot; School of Computing</div>
+    <h1 data-page-node-id="mHAs0Utla1nQNXNC8MjMpE">Summer Workshop 2026, <span class="grad" data-page-node-id="K2TXQ01t8AUWywfcEHKkfT">Visual&nbsp;Computing</span></h1>
+    <p class="hero-lead" data-page-node-id="iMF5fQ5tzXmrUuxFwP0xUc">
+      A 25-day, on-campus research workshop in computer vision — from classical face detection to a real-time
+      facial-expression and sign-language system. Our Group&nbsp;5 project, <em data-page-node-id="E3wHxaZ4z2vHHVkxfOcZs6">Real-Time Video Analysis and Rendering</em>,
+      was awarded the <strong data-page-node-id="BRl6MECiyubqmr6bzxidz3">Third Prize</strong> of the course.
+    </p>
+    <div class="badges" data-page-node-id="znCRyf6qukPaaNxxtd8ToA">
+      <span class="badge prize" data-page-node-id="PIpqyAtoWVpiu8fugJjqll">🏆 Third Prize &middot; Visual Computing</span>
+      <span class="badge grade" data-page-node-id="nFosYHyH8YN1svII0YuXrF">Result: Grade A</span>
+      <span class="badge" data-page-node-id="s3CHgLBfmBvlae2Gwei3sN">Group 5 &middot; 4 members</span>
+      <span class="badge" data-page-node-id="4jlco7GjJDGrJYzCXV0DUy">9 May – 30 Jul 2026</span>
+      <span class="badge" data-page-node-id="Xjs4gUjQxHO1O4lqJ5OzTL">Singapore</span>
+    </div>
+    <div class="cta" data-page-node-id="7IBikRSNFPYj4bOtZixA4i">
+      <a class="btn btn-primary" href="#project" data-page-node-id="JjQnMJ11TXWXrqjrXah2x8">Explore the project &rarr;</a>
+      <a class="btn btn-ghost" href="#recognition" data-page-node-id="zzHXAPnmEcjOHPFrmw0FmT">Certificates &amp; results</a>
+    </div>
+
+    <div class="stats" data-page-node-id="h9rqA2Wa1c3uHmDmEBvW8Q">
+      <div class="stat" data-page-node-id="JRr1t521MmBvbjgp9gVpIs"><b data-page-node-id="pBQmJtSz8nkFdsAH0TGz8Y">31</b><span data-page-node-id="TLIfcDmrRKta56YbyxISfI">Days</span></div>
+      <div class="stat" data-page-node-id="vDCFyZ1TMFlrgRqW8H73r2"><b data-page-node-id="vEzOHWe9BNCLBtHQrvDBgR">130</b><span data-page-node-id="wEl1DHibaTQnZGukWvIyJR">Contact hours</span></div>
+      <div class="stat" data-page-node-id="B8MLoqHVEEnEQ9BBF6GTyD"><b data-page-node-id="Zc1fdg1xOj4NvZ0qGFEAXH">3</b><span data-page-node-id="921SZnste6uBA5khiCZGMI">Clusters &middot; 15 courses</span></div>
+      <div class="stat" data-page-node-id="TXy1hNTXPE95zyxA3Jr86A"><b data-page-node-id="svwEXEG9M0tE9BmAvkgMV7">4</b><span data-page-node-id="9OaDQco83HgLHopdS07iMA">Team members</span></div>
+      <div class="stat" data-page-node-id="Uz8WMyMwOq8oqEDS9aBzli"><b data-page-node-id="mxzEKcCpnVoHYGK6j3bnJ1">3rd</b><span data-page-node-id="GapORHzvZXSUCgJdtw6Gty">Prize, group project</span></div>
+    </div>
+  </div>
 </header>
-<div class="container">
-    <!-- About Me -->
-    <section id="about" class="hero">
-        <img class="avatar" src="avatar.jpg" alt="Yufeng Tang">
-        <div class="hero-info">
-            <h1>Yufeng Tang (Jerry Tang)</h1>
-            <p><i class="fa-solid fa-laptop"></i>
-                <span class="en"><strong>Undergraduate Student</strong> | <strong>Research Enthusiast</strong></span>
-                <span class="zh"><strong>本科生</strong> | <strong>科研爱好者</strong></span>
-            </p>
-            <p>
-                <span class="en">I am an undergraduate student majoring in <strong>Software Engineering</strong> at Northwestern Polytechnical University. My research interests include <em>Large Language Model evaluation</em>, <em>Computer Vision</em>, <em>occlusion‑robust visual recognition</em>, and <em>image enhancement</em>.</span>
-                <span class="zh">我是西北工业大学<strong>软件工程</strong>专业本科生。研究方向包括<em>大语言模型评测</em>、<em>计算机视觉</em>、<em>抗遮挡视觉识别</em>、<em>图像增强</em>。</span>
-            </p>
-            <div class="contact-links">
-                <a href="mailto:tangjerry@mail.nwpu.edu.cn"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://github.com/jerrytyf"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=yiqJcakAAAAJ"><i class="fa-solid fa-book"></i> Google Scholar</a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://www.researchgate.net"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
-            </div>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview" data-page-node-id="psYT2E7gyHdL8zLrsBHyoa">
+  <div class="wrap" data-page-node-id="IwZQdZ1LK5WCExbkkCCbOk">
+    <div class="sec-head rv" data-page-node-id="GmgSvDZnjdxbQsiygKmdod">
+      <div class="sec-eyebrow" data-page-node-id="77AWg5ulvBc3x5Ym6qeALV">At a glance</div>
+      <h2 data-page-node-id="RQ4hXyQYUJUER73EyjuFwS">A world-class computing summer programme</h2>
+      <p data-page-node-id="Mlz8l8QlL7mdolzF7pLkkK">The NUS School of Computing Summer Workshop is a flagship programme that pairs frontier theory with
+      intensive, supervised project development. I enrolled in <strong data-page-node-id="W9igGdTx3sXq0K2H8AL1Ii">Visual Computing</strong> and spent the
+      second phase on campus building a real-time vision system with three teammates.</p>
+    </div>
+
+    <div class="grid g3" data-page-node-id="7YqAwAGiFtKdVLtkaLmvO0">
+      <div class="card rv" data-page-node-id="FFg1btJRpcnvVs75Fo3Deq">
+        <span class="k-num" data-page-node-id="d1IKOqtF1dc3ta2cRCc9oW">01 &mdash; Programme</span>
+        <h3 data-page-node-id="Q1TOU8x8nhMhX3xgncxtFY">NUS SoC Summer Workshop 2026</h3>
+        <p data-page-node-id="WX1ARQ6rY4AbiWq3mldkqz">Run by the School of Computing, National University of Singapore — Asia's leading university
+        (QS 2026 World Rank&nbsp;#8, Computer Science Rank&nbsp;#4).</p>
+      </div>
+      <div class="card rv" data-page-node-id="5CaCKPVp0tQ91s1WMWymsw">
+        <span class="k-num" data-page-node-id="a47zSuqWGvpkGucWE1Ejws">02 &mdash; Course</span>
+        <h3 data-page-node-id="TAOqxJlrlArZgKXY9wHuXw">Visual Computing</h3>
+        <p data-page-node-id="ysrrZ5W1ApaNKYuQXRRI7j">A 4-credit-equivalent course (130 contact hours) covering real-time image analysis, detection,
+        tracking and rendering, assessed through assignments, quizzes and a team project.</p>
+      </div>
+      <div class="card rv" data-page-node-id="icOU9o5YbJJptLpIRbGTDv">
+        <span class="k-num" data-page-node-id="EJ6AZJfWDXtPV1BHtvCu1b">03 &mdash; Format</span>
+        <h3 data-page-node-id="Gk6SD0uWpLOSuLTwYoRi2j">Online &amp; on campus</h3>
+        <p data-page-node-id="wiNipXbkisxouXPLSJspPv"><strong data-page-node-id="oKFPcvF0KmAqZkvxWemXW5">Phase 1</strong> (9–24 May): six online teaching days across three weekends.
+        <strong data-page-node-id="imYuJ4AQGQKvdZSQhrmZuE">Phase 2</strong> (6–30 July): 25 days of in-person research at the NUS SoC campus, Singapore.</p>
+      </div>
+      <div class="card rv" data-page-node-id="oFIuHRD4VBkrBtMg4x9m4t">
+        <span class="k-num" data-page-node-id="i6VrQlIQ2RfWO8zoPEyuvx">04 &mdash; Team</span>
+        <h3 data-page-node-id="Q5JINzFu2IGYyUe4qoGMh3">Group 5</h3>
+        <p data-page-node-id="T27q1SdQ9TGVl2ZKfEnDU0">Four undergraduates from three universities — Zhejiang University, Northwestern Polytechnical
+        University and Ho Chi Minh City University of Technology (VNU-HCM).</p>
+      </div>
+      <div class="card rv" data-page-node-id="odq1LOr7gAFEcyh1AQpT0q">
+        <span class="k-num" data-page-node-id="w5kBBJGyBZrApUZ30xUWQn">05 &mdash; Project</span>
+        <h3 data-page-node-id="ztjHkDpbDgH47QDdew0tM7">Real-Time Video Analysis &amp; Rendering</h3>
+        <p data-page-node-id="MNl97nLE5Fe7UZnAJA85y2">A webcam-driven pipeline that detects faces and bodies, recognises expressions and sign-language
+        gestures, and renders live visual effects — branded <strong data-page-node-id="HJWA7gTM0wl2sHkcQWRmXk">SignVerse</strong>.</p>
+      </div>
+      <div class="card rv" data-page-node-id="SHG4x4FMujcj283vDot6MH">
+        <span class="k-num" data-page-node-id="4PjX5H52AX8Zlmoj6BUCjF">06 &mdash; Outcome</span>
+        <h3 data-page-node-id="UN2EhwtOSl2NMNehE79Zzt">Third Prize &amp; Grade A</h3>
+        <p data-page-node-id="VeYCYh3PjEX3ncgdCPL7Ba">Awarded the <strong data-page-node-id="2wDs9LSHNKB6eQNsGc3DBb">Third Prize</strong> of the Visual Computing course project competition, with a
+        final course performance of <strong data-page-node-id="KXD8Fag7wPEjePXoK95QLV">A</strong> on the official NUS performance slip.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROGRAMME ================= -->
+<section id="program" class="bg-white" data-page-node-id="kjFasRySNYlwdNp1aQGoAi">
+  <div class="wrap" data-page-node-id="I6RSS5E9MvOHrPYruBnSHH">
+    <div class="split" data-page-node-id="eHllLPrxfj84eNFku775fl">
+      <div class="rv" data-page-node-id="QIcJOktRVa71SA68PizhxH">
+        <div class="sec-eyebrow" data-page-node-id="Jqjnjn6Jwy8SkMuYfNkFED">The programme</div>
+        <h2 style="font-size:clamp(1.72rem,4vw,2.5rem);color:var(--navy-800);margin-bottom:16px" data-page-node-id="uIr0jZIbbYWarXEKzu20KH">
+          Theory in May, a real project in July
+        </h2>
+        <p style="color:var(--ink-2)" data-page-node-id="vY1zF1Vcsa49y73xCdJFD5">
+          The workshop is split into two phases. In the first, students choose a cluster and complete foundational
+          coursework online; in the second, they travel to Singapore for 25 days of supervised, hands-on research and
+          finish with a project presentation and competition judged by faculty.
+        </p>
+        <p style="color:var(--ink-2)" data-page-node-id="argiB0gBHZugWi1rNUX2Vc">
+          What made it valuable was the density: lectures in the morning, lab and project work after, weekly check-ins
+          with professors and teaching assistants, and a final demo day where every group pitched and defended their
+          work.
+        </p>
+        <div class="chips" style="margin-top:22px" data-page-node-id="ToWaTkApVu2j8LEEIp56Mb">
+          <span class="chip" data-page-node-id="1GQVH8QayHuGZPsfgYbKJf">Supervised hands-on project</span>
+          <span class="chip" data-page-node-id="amFPnfekYnBSwrtaK6vIvb">Faculty &amp; TA mentoring</span>
+          <span class="chip" data-page-node-id="paSh2UAdLOaWKt6kkjQDF2">Final presentation &amp; competition</span>
+          <span class="chip" data-page-node-id="JuWpF6L25G22dsmvBVgdvU">Certificate &amp; performance slip</span>
         </div>
-    </section>
-    <!-- News 分页，每页最多5条，时间倒序 -->
-    <section id="news">
-        <h2><i class="fa-solid fa-bullhorn"></i> <span class="en">News</span><span class="zh">最新动态</span></h2>
-        <div id="newsListWrap">
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jun 2026</div>
-                <div>
-                    <span class="en">Participated in NUS School of Computing Summer Workshop and won <strong>3rd Place</strong> & <strong>Most Popular Award</strong>.</span>
-                    <span class="zh">参加新加坡国立大学计算机学院暑期工坊，获得<strong>三等奖</strong>以及<strong>最受欢迎项目奖</strong>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> May 2026</div>
-                <div>
-                    <span class="en">Awarded <strong>Honorable Mention (H奖)</strong> in the <strong>2026 Mathematical Contest in Modeling (MCM)</strong>.</span>
-                    <span class="zh">在<strong>2026美国数学建模竞赛（MCM）</strong>中获得<strong>Honorable Mention（H奖）</strong>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Feb 13, 2026</div>
-                <div>
-                    <span class="en">Obtained <strong>IELTS overall score 6.5</strong>.</span>
-                    <span class="zh">雅思出分，总分<strong>6.5</strong>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Feb 2026</div>
-                <div>
-                    <span class="en">Our <strong>CVPR‑submitted</strong> paper received reviewer scores of <strong>1, 4, 4</strong>, where score 4 corresponds to <em>borderline accept</em>.</span>
-                    <span class="zh">投递至<strong>CVPR</strong>的论文返回审稿分数<strong>1,4,4</strong>，其中4代表<em>borderline accept（边缘接收）</em>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Dec 2025</div>
-                <div>
-                    <span class="en">Received <strong>Wu Yajun Third‑Class Scholarship</strong>.</span>
-                    <span class="zh">荣获<strong>吴亚军三等奖学金</strong>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Nov 2025</div>
-                <div>
-                    <span class="en">Our class won the title of <strong>University Model Class</strong> (I served as <strong>Class Monitor</strong>).</span>
-                    <span class="zh">所在班级获评<strong>全校模范班级</strong>（本人担任<strong>班长</strong>）。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jul‑Sep 2025</div>
-                <div>
-                    <span class="en">Worked as <strong>Algorithm Intern</strong> at Meiya Pico Large Model R&D Center.</span>
-                    <span class="zh">于梅亚奇大模型研发中心担任<strong>算法实习生</strong>。</span>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-date"><i class="fa-solid fa-calendar-days"></i> Jun 2024‑Feb 2025</div>
-                <div>
-                    <span class="en">Submitted <strong>first‑author</strong> paper to <strong>CVPR</strong> for peer review (<em>under review</em>).</span>
-                    <span class="zh">以<strong>第一作者</strong>向<strong>CVPR</strong>投递论文，目前处于<em>审稿中</em>。</span>
-                </div>
-            </div>
+        <p class="note" data-page-node-id="GD1asrt7vCJL6Bu4HlwMup">Official programme website: <a href="https://sws.comp.nus.edu.sg/" target="_blank" rel="noopener" data-page-node-id="3RCnwWV72qy9cTXGVVO2b6">sws.comp.nus.edu.sg</a></p>
+      </div>
+      <figure class="figure rv" data-page-node-id="GGIehKycPaFkx8wbGsspma">
+        <img src="assets/program-poster.jpg" alt="Official NUS School of Computing Summer Workshop 2026 programme poster"
+             data-cap="Official programme poster — NUS School of Computing Summer Workshop 2026" data-page-node-id="Lcs5lDwtaHuCZby3X9kMqP" />
+        <figcaption data-page-node-id="SsV1uk9OqHdUDZJSqe90aW">Official programme poster — NUS School of Computing Summer Workshop 2026</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g3" style="margin-top:56px" data-page-node-id="9IbQEb0YNmhYr9CQ3UA5b5">
+      <div class="card rv" data-page-node-id="V551TYYDw7eKrDp8Dr5B1h">
+        <div class="ico" data-page-node-id="nvllWhafBBgxeoWLUd46lQ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="CL6NZcp3pH9OTRWPGrZiTE"><path d="M12 2l2.6 6.6L21 10l-5 4.4L17.3 21 12 17.4 6.7 21 8 14.4 3 10l6.4-1.4z" data-page-node-id="KvlxECUIqniGVA9ID6fLjZ"/></svg></div>
+        <h3 data-page-node-id="F4lqsNGkrvi9oDUiPENE37">Project competition</h3><p data-page-node-id="FmgpcdLGnjCFN1mjlGUbTM">Showcase your computing skills through a supervised, intensive hands-on project.</p>
+      </div>
+      <div class="card rv" data-page-node-id="lJvTzdrywTyJKjz0t6OicI">
+        <div class="ico" data-page-node-id="lgYkyVBbyjM7odRHPv3tHf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="QCPT3TvlZAjda9CA7m2h1P"><rect x="3" y="4" width="18" height="13" rx="2" data-page-node-id="C5vwxcEIxKaWYnxKDyETqa"/><path d="M8 21h8M12 17v4" data-page-node-id="60zBa2mUZFtt9OMNkdFHNx"/></svg></div>
+        <h3 data-page-node-id="XHulxWOybbvBVm2LAQI1ZH">NUS learning platforms</h3><p data-page-node-id="9bWy33t59ljMLhwlYnKMpW">Exclusive individual access to NUS learning platforms and course material.</p>
+      </div>
+      <div class="card rv" data-page-node-id="5TqJuynpVvph5izNX0F0Ni">
+        <div class="ico" data-page-node-id="dMsb03MHuAP6DzXOg4vYUa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="TEKNGt2bz9zs2DFEWfI6rW"><path d="M4 5h7v14H4zM13 5h7v14h-7z" data-page-node-id="kdo1jYZBgsbAVBnK2TrgGd"/></svg></div>
+        <h3 data-page-node-id="v8x3CN0DUqrWDZv3HD9kyV">Wide range of subjects</h3><p data-page-node-id="A10FA8CstOcKeIEpaRM1xM">Three clusters with fifteen courses in high-demand IT fields.</p>
+      </div>
+      <div class="card rv" data-page-node-id="sMklI0SUP8gfJiRmZpAJyU">
+        <div class="ico" data-page-node-id="wlNcKlvF9LCFpJyMJO11sS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="SOPxcvfcjDLr91Y2r0AEIQ"><path d="M12 3l9 5-9 5-9-5z" data-page-node-id="OxjpGE2ksL2t3vlJi4CbWA"/><path d="M21 12l-9 5-9-5" data-page-node-id="iLMACPpUlCHhlKSBf5TH4P"/></svg></div>
+        <h3 data-page-node-id="1ohIrx5sk2iy4TlPO5jkBT">NGNE pathway</h3><p data-page-node-id="vP7lxXVucXavcmX8Zm3nme">Top performers may apply for the SoC NGNE programme and direct admission to the Master of Computing.</p>
+      </div>
+      <div class="card rv" data-page-node-id="OE38xhyKCsiRLdBsobLS5g">
+        <div class="ico" data-page-node-id="WHlQGGCc32MrEgqDSSzZbu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="wwBat9mrBDfzUT9sNzzhjz"><path d="M3 8h18v11H3z" data-page-node-id="RpGOorPBEpw6kAqxF4Iwy3"/><path d="M9 8V6a3 3 0 013-3h0a3 3 0 013 3v2" data-page-node-id="Zt9AWeogPfSqeqoWzshOWU"/></svg></div>
+        <h3 data-page-node-id="UQJaAg4gWhCfcDMmJZI1AZ">Internship opportunities</h3><p data-page-node-id="NBnPvr5WuaM88RrZGGQqKY">Outstanding students can be considered for internships at the School of Computing on a competitive basis.</p>
+      </div>
+      <div class="card rv" data-page-node-id="FW0XrDFFHRh7JOo42Oh0HD">
+        <div class="ico" data-page-node-id="YjptrJ7KMW2AF5cpfsqMQ4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="nvoLlAAGwE9BONbreH0j7R"><circle cx="12" cy="9" r="5" data-page-node-id="QECv1mWWDrhYwL7cGSV8tI"/><path d="M8.5 13.5L7 21l5-2.6L17 21l-1.5-7.5" data-page-node-id="yTd79jVOe1bDEBNlW2ckiI"/></svg></div>
+        <h3 data-page-node-id="GAktI0Dva4EFWjZpPstUJN">Certificate &amp; performance slip</h3><p data-page-node-id="zb9XvfgfYe6mUsu5NcCf6l">A certificate and official performance slip, valuable for future study and career applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECT ================= -->
+<section id="project" class="bg-deep" data-page-node-id="QfKIkCDW5pBD0UiIKXdThq">
+  <div class="wrap" data-page-node-id="gjwwUuXgOSSpgy80ag53tH">
+    <div class="sec-head rv" data-page-node-id="CvQeEAmJFlO70gdBfwZBqW">
+      <div class="sec-eyebrow" data-page-node-id="zT4DMtoUWBPREVlGPQkgDv">The project</div>
+      <h2 data-page-node-id="P0su4sBpFihSewLoJAmth4">Real-Time Video Analysis and Rendering</h2>
+      <p data-page-node-id="WanwJvj6Bkr3m6jDWDlDbM">Group 5's entry into the Visual Computing project competition. We built a single webcam-driven system that
+      analyses a live video stream and renders responses in real time — then gave it a purpose: accessible
+      communication.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:56px" data-page-node-id="APujzT7bENwodu9ZMy4l6u">
+      <div class="rv" data-page-node-id="DqID1NCbZdtwy6VvjYPmuq">
+        <div class="logo-light" style="margin-bottom:24px" data-page-node-id="LE0QhzB6GVzuecxKT8GE7L">
+          <img src="assets/signverse-logo.png" alt="SignVerse — A World Beyond Words" data-page-node-id="VJgAkg2d5EhA9lUV4Sywvu" />
         </div>
-        <!-- news分页控件 -->
-        <div class="news-pagination">
-            <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i> <span class="en">Prev</span><span class="zh">上一页</span></button>
-            <span class="news-page-info" id="pageInfo"></span>
-            <button id="nextBtn"><span class="en">Next</span><span class="zh">下一页</span> <i class="fa-solid fa-chevron-right"></i></button>
+        <p style="color:rgba(255,255,255,.82);font-size:1.05rem" data-page-node-id="9rDxA1MkawPMEf5moqv64t">
+          Everything we learned across three difficulty levels converged into a single product concept:
+          <strong style="color:#fff" data-page-node-id="nQmDyFfcsestYSAGnGeXOV">SignVerse</strong> — a real-time interface that lets Deaf and hard-of-hearing
+          users communicate with an AI through sign language, and lets AI respond visually.
+        </p>
+        <p class="quote" data-page-node-id="JmdGS80Cp67UnJOR47G0lL">SignVerse lets Deaf and hard-of-hearing users talk to AI in sign language — creating a more
+        natural, independent and accessible digital experience.</p>
+        <div class="chips" style="margin-top:24px" data-page-node-id="DWYsDmvCyw82EI6v32kfs8">
+          <span class="chip" data-page-node-id="Ykud3Vh4CUk2KaQ2aELa2N">Real-time inference</span>
+          <span class="chip" data-page-node-id="c6inEEEml4qGuidfV8mIPC">On-device video processing</span>
+          <span class="chip" data-page-node-id="1y0diEBoz6LQF2gnUjjGLb">Facial &amp; gesture understanding</span>
+          <span class="chip" data-page-node-id="aDxSF5HlTdlTLJJBG0vxyC">Realtime visual rendering</span>
+          <span class="chip" data-page-node-id="vB7dwDM81YHVrHqrGaPLFF">Accessibility-first</span>
         </div>
-    </section>
-    <!-- Education -->
-    <section id="education">
-        <h2><i class="fa-solid fa-graduation-cap"></i> <span class="en">Education</span><span class="zh">教育经历</span></h2>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-school"></i> Northwestern Polytechnical University, <strong>B.Eng. in Software Engineering</strong></span>
-                <span class="edu-time"> — Present</span>
-            </div>
-            <p>
-                <span class="en">English: <strong>CET‑4 641</strong>, <strong>CET‑6 578</strong>, <strong>IELTS 6.5</strong></span>
-                <span class="zh">英语水平：<strong>四级641</strong>，<strong>六级578</strong>，<strong>雅思6.5</strong></span>
-            </p>
+      </div>
+      <figure class="figure rv" data-page-node-id="lYHNhwuU13Ord40vxPpCet">
+        <img src="assets/signverse-concept.jpg" alt="A user signing to an AI assistant on screen"
+             data-cap="SignVerse concept — signing to an AI assistant, which answers on screen" data-page-node-id="8J5cGGntpqSKGGpqDhyNaG" />
+        <figcaption data-page-node-id="0G7PppUImr0qV7lKypIW8G">SignVerse concept — signing to an AI assistant that answers on screen</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g3" data-page-node-id="p03ekox0qrwj3Wmej7ytUA">
+      <div class="card rv" data-page-node-id="DLxfBB17DAmLS98VxPM69d">
+        <span class="k-num" data-page-node-id="xQNmvNVsUnJPZr0GI9jKvY">Level 1 — Beginning</span>
+        <h3 data-page-node-id="PreK3LFDUdep8nd6QtS3dh">Robust face detection</h3>
+        <p data-page-node-id="ICQOsLiyz60tEJV8ktBGXd">Why classical Haar + LBF detection breaks down — and what a lightweight deep-learning detector fixes.</p>
+      </div>
+      <div class="card rv" data-page-node-id="F58JDIWGaOys6LsaE7NsCC">
+        <span class="k-num" data-page-node-id="CJinrtCQJYoPsqDuiiVpiH">Level 2 — Expert</span>
+        <h3 data-page-node-id="Y0dbDBn08RjhNBe9tMB4hC">Expression recognition &amp; effects</h3>
+        <p data-page-node-id="4IqBCnt1mhmf3wJntw5Qap">A hybrid model that fuses CNN appearance features with geometric landmarks to read seven emotions, then renders them.</p>
+      </div>
+      <div class="card rv" data-page-node-id="WkQHJ5EYXpsBEn6qaxDLOt">
+        <span class="k-num" data-page-node-id="rcGh5UsPhuXJaUL3tEGthP">Level 3 — Bonus</span>
+        <h3 data-page-node-id="IccpRnashvKTuEdEQWMgdn">Dance scoring &amp; gesture control</h3>
+        <p data-page-node-id="WS3KORHSrKYWC9SvubEaum">Pose-based dancer tracking, an explainable dance scoring engine, and a game you play with your hands.</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:26px" data-page-node-id="vThA3BHUJMBJQo7ZQYEfJY">The presentation was delivered on 28 July 2026 as Group&nbsp;5 — presented by
+    Yufeng Tang and Tri H. Trinh, with contributions across model design, experiments, application development,
+    testing and video production.</p>
+  </div>
+</section>
+
+
+<!-- ================= POSTER ================= -->
+<section id="poster" data-page-node-id="UgPmWxQ1HHWnVz4jCjnO2L">
+  <div class="wrap" data-page-node-id="x4CZXUv3RrDVcuDm4sQr28">
+    <div class="sec-head rv" data-page-node-id="9t6uoNuHbyH2FsG1IbcyE6">
+      <div class="sec-eyebrow" data-page-node-id="xdqy0J4PhByxmBSgdGrMHO">The poster</div>
+      <h2 data-page-node-id="sBrHnLU1Ut3lqXG68UkasW">One page, the whole project</h2>
+      <p data-page-node-id="tBDMo4npjKAM2WHZLI6UD6">Every group presented a single poster at the closing showcase. Ours compresses all three levels &mdash;
+      face detection, the hybrid expression model, real-time video effects, dancer recognition and scoring, and the
+      SignVerse application &mdash; into eight panels.</p>
+    </div>
+    <div class="split" style="align-items:start" data-page-node-id="y8UBXlSz96FDplOxGiofZH">
+      <div class="rv" data-page-node-id="zc6k585AZhwMWMyOrjxkig">
+        <h3 style="font-size:1.16rem;color:var(--navy-800);line-height:1.42;margin-bottom:10px" data-page-node-id="UEymWqfFaIG1CvWU2OTftl">
+          From Robust Face Detection to Real-Time Expression Effects, Dance&nbsp;Scoring &amp; Sign-Language Recognition
+        </h3>
+        <p class="k-num" style="margin-bottom:20px" data-page-node-id="ZzhY9VS1UDapDF16HKuy5e">Group 5 &middot; Visual Computing &middot; NUS SOC Summer Workshop 2026</p>
+        <div class="steps" data-page-node-id="JqxmzR2OAVrF1AqD6U3HvH">
+          <div class="step" data-page-node-id="cDtdjfDB8ATR2eIW63urU8"><div class="n" data-page-node-id="n4imPATE6IUzD8lwPyWYzg">1</div><div data-page-node-id="lMLENcojmci3ttCa1q0i2C"><h4 data-page-node-id="qotP3aHFfnTty0hWCeZcIQ">Beginning Level &mdash; Face Detection</h4><p data-page-node-id="JlFzd9ER0SCUN2kO0PrHRG">Haar&nbsp;+&nbsp;LBF versus YuNet&nbsp;+&nbsp;MediaPipe under rotation, lighting and occlusion.</p></div></div>
+          <div class="step" data-page-node-id="19zgqzfD7zfgPISres8Uqx"><div class="n" data-page-node-id="pQ2vcvCfAWqEDkLRmDtUjy">2</div><div data-page-node-id="WrbGSJ4cMvz15aVPLguCMf"><h4 data-page-node-id="lklFyKzR57dA7P3mlhXrRd">Expert Level &mdash; Hybrid Expression Model</h4><p data-page-node-id="ax9w4PodWCOEpbCsimRNFv">FACN landmarks and geometric features fused into a seven-class MLP.</p></div></div>
+          <div class="step" data-page-node-id="2h6H1rkjaGv8fxXSCu4Q5M"><div class="n" data-page-node-id="ZSL20lFpZ45E3gpBJHpEVU">3</div><div data-page-node-id="YN9Jq3WnDBNu1ZioA0fBsV"><h4 data-page-node-id="NykYW2vo4th3zOYvTyx44F">Results &mdash; Expression Recognition</h4><p data-page-node-id="bO7xeiFqNtGOuhcEIz13vm">Confusion matrix and class-centroid similarity for Local, Geo and Hybrid features.</p></div></div>
+          <div class="step" data-page-node-id="jfgNz4xc34x6ohjbLUiKIM"><div class="n" data-page-node-id="nFjJHH72dD7MPxMAa5Pg8r">4</div><div data-page-node-id="TcOTBlyeX4tt2nwWmg4J4f"><h4 data-page-node-id="ylrtOopLa3MJgEEV1Ky80c">Task 2 &mdash; Real-Time Video Effects</h4><p data-page-node-id="dGIWCnBpB5rukR67HdNC4T">Seven emotions mapped to rendered effects, with a supportive chat agent.</p></div></div>
+          <div class="step" data-page-node-id="Cb79TO7Bb5l4ELsGfxq5Fm"><div class="n" data-page-node-id="F6VBbS4Yt4tcNZWdP3zMHu">5</div><div data-page-node-id="Ih6fBZTzft0LTcUyyGTUqb"><h4 data-page-node-id="Nohn4DbHrLKQq4UCcJkmXf">Bonus Level &mdash; Dancer Recognition</h4><p data-page-node-id="4mMpSSb867GPQ6NHkY1p59">YOLOv8s-pose tracking with a score-based promote / evict tracker.</p></div></div>
+          <div class="step" data-page-node-id="z49vGuvMBZqaoaKgnmfigJ"><div class="n" data-page-node-id="EAW7jA03Jysui8FuBMn2yg">6</div><div data-page-node-id="K2BpIAlmVPekvyueC0sND3"><h4 data-page-node-id="PwMylzLpnlYFVd9nxXhyfP">Scoring System</h4><p data-page-node-id="TAsjiPtAbdAzuXmkovAt8p">Pose 60% + Motion 25% + Timing 15%, aligned to the reference dance.</p></div></div>
+          <div class="step" data-page-node-id="vAqC0chJO3VhAPl7JNwcRK"><div class="n" data-page-node-id="mTpzjNtktRZZPliBp67D1a">7</div><div data-page-node-id="xPhWoACM1PpKfmCXr8s6bk"><h4 data-page-node-id="FA4QTbspkkRS7VtDZNiBZP">Further Application &mdash; Angry Birds</h4><p data-page-node-id="6Rgqr6DSqb0rasT2vTiiGU">A slingshot game controlled by hand gestures.</p></div></div>
+          <div class="step" data-page-node-id="S30Q1jrAQ0WrCT5WClAxuj"><div class="n" data-page-node-id="BzO5jqv0PQtSW29LRxDgSB">8</div><div data-page-node-id="mgIbBkn2TcEKDzgSsikjBH"><h4 data-page-node-id="tB0FZpTBJd1aEIFwo9FHmt">Further Application &mdash; SignVerse</h4><p data-page-node-id="2r6lHw1qRe7RNfuRdTCbo8">MediaPipe Hands + DTW sign-language recognition for Deaf users.</p></div></div>
         </div>
-    </section>
-    <!-- Internship -->
-    <section id="internship">
-        <h2><i class="fa-solid fa-briefcase"></i> <span class="en">Internship</span><span class="zh">实习经历</span></h2>
-        <div class="intern-item">
-            <div class="intern-top">
-                <span class="intern-company"><i class="fa-solid fa-building"></i> Meiya Pico | <strong>Algorithm Intern</strong>, Large Model R&D Center</span>
-                <span class="intern-time">Jul 2025 - Sep 2025</span>
-            </div>
-            <p>
-                <span class="en">Systematically investigated mainstream and cutting‑edge large language models (<strong>Qwen3, DeepSeek</strong>). Conducted comprehensive evaluations on model capabilities for <em>knowledge reasoning</em>, <em>code generation</em> and <em>complex QA tasks</em>, via remote API calling and local deployment over authoritative open‑source benchmarks including <strong>AIME, GPQA, bfcl‑v3, LiveCodeBench, ArenaHard</strong>.<br>
-            Skills: <strong>Python</strong>, <em>LLM evaluation</em>, local model deployment, <strong>Linux</strong>, open‑source benchmark suites</span>
-                <span class="zh">系统调研主流前沿大语言模型（<strong>Qwen3、DeepSeek</strong>）。基于远程API调用与本地部署，在<strong>AIME、GPQA、bfcl‑v3、LiveCodeBench、ArenaHard</strong>等权威开源评测集上，对模型的<em>知识推理</em>、<em>代码生成</em>、<em>复杂问答</em>能力开展全面评测。<br>技能：<strong>Python</strong>，<em>大模型评测</em>，模型本地部署，<strong>Linux</strong>，开源评测套件</span>
-            </p>
+        <p class="note" data-page-node-id="k6R1wyb3ZBL7INdPTm2ubA">Click the poster to open it at full size.</p>
+      </div>
+      <figure class="figure rv" data-page-node-id="DFaBdTs3lQzBZI6uixzFYM">
+        <img src="assets/poster-group5.jpg" data-tall
+             alt="Group 5 poster — From Robust Face Detection to Real-Time Expression Effects, Dance Scoring and Sign-Language Recognition"
+             data-cap="Group 5 poster — NUS SOC Summer Workshop 2026 (Visual Computing)" data-page-node-id="BoetnklXAehW3ZW5oG9mrE" />
+        <figcaption data-page-node-id="TEA4rqnHeYPKLYSmVLKNCR">Group 5 poster &mdash; NUS SOC Summer Workshop 2026</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEGINNING ================= -->
+<section id="beginning" class="bg-white" data-page-node-id="b0w9NiKAl2HrfMUw0X5tDd">
+  <div class="wrap" data-page-node-id="AF6Oi2wbQ4FenUzDzCq5qW">
+    <div class="sec-head rv" data-page-node-id="en8sEHh9tfCW52gdqDic1f">
+      <div class="sec-eyebrow" data-page-node-id="xWvBKiDE5D8qqFQb9j1kQm">Level 1 &middot; Beginning</div>
+      <h2 data-page-node-id="f6eJeEv5P34cyKAt7DiNEC">Face detection: from hand-crafted features to deep learning</h2>
+      <p data-page-node-id="iytd7SA9ure5uRirR1cDBj">The system's front end had to find and track a face reliably, in real time, on a laptop webcam. We started
+      with the classic <strong data-page-node-id="Gs4DCj35qPcbVNkGDucRyo">Haar Cascade + LBF</strong> landmark approach and compared it against the modern,
+      lightweight <strong data-page-node-id="7nLEUFgfE2kk3Z3eRifGSu">YuNet</strong> detector (with MediaPipe landmarks).</p>
+    </div>
+
+    <div class="tbl-wrap rv" data-page-node-id="pFslqFpEDqv9FDhhAeALnL">
+      <table class="cmp" data-page-node-id="ekeVBHhb3zEJYc0F3ubRtB">
+        <thead data-page-node-id="zMQFNXwJvXveqgr1fgMFo0">
+          <tr data-page-node-id="IFCEq8zlc99SZZqk7nxJo3">
+            <th data-page-node-id="togGSbcvV0iERLKXvBfl8D">Feature</th>
+            <th data-page-node-id="1LrBpaOeC0SGGqvgrv1spZ"><span class="pill-old" data-page-node-id="JyUMdicLzGF6KT2uA5FnWl">Classical</span> Haar Cascade</th>
+            <th data-page-node-id="LpL5LD8zqUeD8qJWNADYar"><span class="pill-new" data-page-node-id="dN5GnS7Cel3r0zGRI2rxrp">Deep learning</span> YuNet</th>
+          </tr>
+        </thead>
+        <tbody data-page-node-id="pVrxNugPEhRCEZyvvM2J3z">
+          <tr data-page-node-id="941MO4allEPNjyDcDTLb6t"><td data-page-node-id="53kn8ok3N7FKQOtE0MrGYp">Method</td><td data-page-node-id="0d6agmELg6rDEEywrMY0wg">Hand-crafted features</td><td class="win" data-page-node-id="vI5bk6sAiJZGc6NoiAHQIe">Deep-learning features</td></tr>
+          <tr data-page-node-id="eysfJSyr7wQzEF96sOGhDM"><td data-page-node-id="ALBAZt2ZaMhdPrbjCi4I63">Head rotation</td><td data-page-node-id="YEvplxR62sJJNlApWbKja9">Less reliable</td><td class="win" data-page-node-id="W1sroEBq99aXxDhi4WfTsY">More robust</td></tr>
+          <tr data-page-node-id="6jDBfV6QiLZA0bxj84KW4p"><td data-page-node-id="gnwi2yKXiW1K1louCZE1QQ">Lighting changes</td><td data-page-node-id="WRHZXm67OThv1Tb5G0V3yD">Sensitive</td><td class="win" data-page-node-id="8weQr5OFjsDZYWL6JE5NeI">More stable</td></tr>
+          <tr data-page-node-id="fSgLAMRxbvEznT6HxsLrDx"><td data-page-node-id="J9tHg0XbzHtG6DyvaRel51">Partial occlusion</td><td data-page-node-id="MlxkzV9cJeJqlqUbxJ5Pk4">Often fails</td><td class="win" data-page-node-id="429wsFZH04gPvg5jDG39LV">Better performance</td></tr>
+          <tr data-page-node-id="8j7tls15RAQnxJjZRBnWRA"><td data-page-node-id="ylLb4Fr5oJmesYEGZy0hOQ">Real-time use</td><td data-page-node-id="HSt0dAtqCR7lGT81VXd1x3">Fast</td><td class="win" data-page-node-id="52bOw5BljoZvRBYbCrhHr4">Lightweight and fast</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note rv" data-page-node-id="CaBVy1MipNXZIF5znkrmvS">Takeaway — the deep-learning detector kept tracking through rotated heads, uneven lighting and
+    occlusions, at a speed that still allowed real-time use. That robustness is what made everything downstream possible.</p>
+  </div>
+</section>
+
+<!-- ================= EXPERT ================= -->
+<section id="expert" class="bg-deep" data-page-node-id="3AHQiJOy7RV0ttlXrlYPWQ">
+  <div class="wrap" data-page-node-id="F7u1zqaHGBfdHTH1OFbKtu">
+    <div class="sec-head rv" data-page-node-id="lOg7QymxbRZvY53IeCxqIl">
+      <div class="sec-eyebrow" data-page-node-id="nthiqIsaTKPLigQ2FCdqxA">Level 2 &middot; Expert</div>
+      <h2 data-page-node-id="tCpPb4BKHNYOOhBUoVSgoX">Facial-expression recognition with a hybrid model</h2>
+      <p data-page-node-id="yBeLQOmM1O1p8MCxdSudTq">The core research question: can we read emotion better by combining <em data-page-node-id="3hReN9ij1xgqBtWJhBFaiy">what a face looks like</em> with
+      <em data-page-node-id="xbEKFDyqsPscJT11bGfB19">how the face is shaped</em>? We built a hybrid model that fuses local CNN appearance features with
+      geometric landmark features, and evaluated it against each part alone.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:52px" data-page-node-id="mfdH9UmlfhuE7b4LYKpwXE">
+      <div class="rv" data-page-node-id="elo6aWneOoOIlJVPFIvMfl">
+        <div class="steps" data-page-node-id="IoEg3YItIHCGY1bXugw2Y9">
+          <div class="step" data-page-node-id="AZV67EWNOCcfF5svm61kQA"><div class="n" data-page-node-id="DzKOrf6cDjzQasrQpIVZQ5">1</div><div data-page-node-id="yKC8CoiaCOiRnTOOLJXyX8"><h4 data-page-node-id="WNAdPmDI9MHXDllfP9xDA1">Detect &amp; crop</h4><p data-page-node-id="AmVXm72ZWgub7jOyhT4Ymo">SCRFD detector locates the face; a 192&times;192 crop is extracted and normalised (grayscale + normalisation).</p></div></div>
+          <div class="step" data-page-node-id="cakFZhhoCB4zwTVgcVf4Zw"><div class="n" data-page-node-id="HeLHwlFPdcpXc2mU1rDOdW">2</div><div data-page-node-id="enCIck7BtzfUxb3nEDm4JX"><h4 data-page-node-id="sOWDqadlJPgpDsKWKkArBw">Landmark extraction</h4><p data-page-node-id="qn0OpySsKYQEzROPDFnyQu">Facial landmarks are located on the original image — eyes, brows, nose and mouth.</p></div></div>
+          <div class="step" data-page-node-id="wB9eYvNruLKyDrH9pPa53C"><div class="n" data-page-node-id="fZO8IAfIb4CeuUUdGOCDVb">3</div><div data-page-node-id="8CDU2WDUGmAJVrdgOnmYoR"><h4 data-page-node-id="VhpftsTV50qm75cAKKxlpt">Local features (CNN)</h4><p data-page-node-id="wkWqncvfc9KM4lZH8O31xJ">Regions cropped by keypoints are passed through a CNN to give an appearance feature vector&nbsp;&mu;.</p></div></div>
+          <div class="step" data-page-node-id="q7LocaxX7ILpdcOMEpS4OC"><div class="n" data-page-node-id="QzfdCcCAHGVSbMnuTTHN23">4</div><div data-page-node-id="yPOVp9KBJXaBRHWlGQGtR9"><h4 data-page-node-id="NqGZdpLm79CaMHUvYN7aNA">Geometric features</h4><p data-page-node-id="EEGCZaj0cxAMBkOk34SoE8">Keypoint geometry is normalised (shape-norm and z-score) into a second feature vector&nbsp;&nu;.</p></div></div>
+          <div class="step" data-page-node-id="BHFknm4ZBsUr1rEORNLbFy"><div class="n" data-page-node-id="eB6KrdEtjNchAAqtB28DuT">5</div><div data-page-node-id="Pnp1xukPaOeEyMYOrsSCBB"><h4 data-page-node-id="bxxupEtCFfTSUjijVUl0Cm">Fuse &amp; classify</h4><p data-page-node-id="ueXCzZ6kBTIGlE9mVPRP5P">&mu; and &nu; are concatenated into a mixed feature vector&nbsp;&pi; and classified by an MLP into 7 classes.</p></div></div>
         </div>
-    </section>
-    <!-- Publications -->
-    <section id="publications">
-        <h2><i class="fa-solid fa-file-lines"></i> <span class="en">Publications</span><span class="zh">论文成果</span></h2>
-        <!-- Under Review -->
-        <div class="pub-item">
-            <div class="pub-top">
-                <span class="pub-title"><em>Learning to See by Looking Away: Occlusion‑Robust Visual Recognition via Reasoning under Partial Observations</em></span>
-                <span class="pub-year"><strong>Under Review</strong></span>
-            </div>
-            <div class="pub-authors"><strong>Yufeng Tang</strong> (First Author), et al.</div>
-            <div>
-                <span class="en">Addresses visual recognition under <em>occluded scenarios</em>, proposing a <strong>partial‑observation reasoning framework</strong> to boost occlusion robustness.</span>
-                <span class="zh">针对<em>遮挡场景</em>下的视觉识别任务，提出<strong>基于部分观测的推理框架</strong>，提升模型抗遮挡鲁棒性。</span>
-            </div>
+        <p class="note" style="margin-top:20px" data-page-node-id="MFFdP1s2YRnJCdLCgIveng">Classes: Angry, Disgust, Fear, Happy, Sad, Surprise, Neutral.</p>
+      </div>
+      <div class="rv" data-page-node-id="PQUu6ysNOiipLFnro4rr3h">
+        <figure class="figure" data-page-node-id="s5kAQHphXfFqO23GdnsUic">
+          <img src="assets/fig-confusion.jpg" alt="Confusion matrix of the 7-class expression classifier"
+               data-cap="Confusion matrix — per-class recognition performance on the test set" data-page-node-id="v1DOjCeaJYcsQ46gX4xMWh" />
+          <figcaption data-page-node-id="boM6mizuyXOlnHMJFAdQVn">Confusion matrix — per-class performance on the test set</figcaption>
+        </figure>
+        <div class="grid g2 mt" data-page-node-id="8yd4dGuyQNQnJLgSMiO9Vs">
+          <figure class="figure" data-page-node-id="xztGOcRUcDgmuepNSMt2v7">
+            <img src="assets/fig-embedding-similarity.jpg" alt="Class-centroid cosine similarity for Local, Geo and Hybrid features"
+                 data-cap="Class-centroid cosine similarity — Local vs Geo vs Hybrid features" data-page-node-id="GJC9v2BZGQvglJ7tSKUaHM" />
+            <figcaption data-page-node-id="wnZYitEOvM9p0rDxvBWHHB">Class-centroid cosine similarity — Local / Geo / Hybrid</figcaption>
+          </figure>
+          <figure class="figure" data-page-node-id="ShXX3EGEjLAWSGpWPtU17O">
+            <img src="assets/fig-tsne.jpg" alt="t-SNE embedding of Local, Geo and Hybrid features"
+                 data-cap="t-SNE of Local / Geo / Hybrid features (Fear, Sad, Happy highlighted)" data-page-node-id="w9MoHwWlDHY0ZMNXypW7AV" />
+            <figcaption data-page-node-id="pk0rq7pwejyi6NvAXfnI5G">t-SNE of Local / Geo / Hybrid features</figcaption>
+          </figure>
         </div>
-        <!-- Published paper -->
-        <div class="pub-item">
-            <div class="pub-top">
-                <span class="pub-title"><em>3D Enhanced Residual CNN for Video Super‑Resolution Network</em></span>
-                <span class="pub-year">2025</span>
-            </div>
-            <div class="pub-authors">Xin, W., Wang, Z., Chen, X., <strong>Tang, Y.</strong>, Li, B., & Tian, C.</div>
-            <div><em>Computers, Materials and Continua</em>, 85(2), 2837‑2849.</div>
-            <div>
-                <span class="en">Personal Contribution: <strong>4th author</strong>, responsible for model experiments, server‑based training and testing.</span>
-                <span class="zh">个人贡献：<strong>第四作者</strong>，负责模型实验、服务器训练与测试工作。</span>
-            </div>
-            <div class="pub-links">
-                <a href="https://www.sciopen.com/article/10.32604/cmc.2025.069784"><i class="fa-solid fa-file-pdf"></i>Paper PDF</a>
-            </div>
+      </div>
+    </div>
+
+    <h3 class="rv" style="color:#fff;font-size:1.4rem;margin-bottom:8px" data-page-node-id="mRIlFvlP33VGOxdKoRBX1p">From emotion to a rendered response</h3>
+    <p class="rv" style="color:rgba(255,255,255,.74);max-width:70ch;margin-bottom:26px" data-page-node-id="V6lsaZ1nkDMGW9RqjrSLGH">
+      A prediction on its own is not an experience. We mapped each of the seven emotions to a real-time visual
+      effect — the &ldquo;rendering&rdquo; half of <em data-page-node-id="ptCwbLaR6cYyFy6ZSWVrGk">Real-Time Video Analysis and Rendering</em>.</p>
+    <div class="emojis rv" data-page-node-id="3AC04rgFRK6g5vvjkPmNTf">
+      <div class="emo" data-page-node-id="KHq4pAS1fLIzJ0aPEYu64N"><span class="nm" data-page-node-id="Xn8X0VhlrInm7LNAG1VjHr"><i style="background:#e5484d" data-page-node-id="vF3yFjYjiT9h6FtSFryGBA"></i>Angry</span><span class="fx" data-page-node-id="TapNGAKJLz17eOvUrkq9Lq">Fire, red tint &amp; screen shake</span></div>
+      <div class="emo" data-page-node-id="6a2RPRLzID2OhclYFePgiG"><span class="nm" data-page-node-id="85NspxOWoFS3cF077Ewqo1"><i style="background:#f5b301" data-page-node-id="UQOItKv5pqFUZqwmmvce7L"></i>Happy</span><span class="fx" data-page-node-id="VG9XYfbQPzJAwUJ1LCcd5S">Stars &amp; a golden glow</span></div>
+      <div class="emo" data-page-node-id="tuHEmLn2Yb9LyRQqGOYx1s"><span class="nm" data-page-node-id="dpKe97xor7G4dfHkMwIK9G"><i style="background:#8b5cf6" data-page-node-id="BXUF46Ytda7vYPkokM56p3"></i>Surprise</span><span class="fx" data-page-node-id="TwORk1hEEEIRZCsPZCSxBF">Purple wave</span></div>
+      <div class="emo" data-page-node-id="esV6fnqCWsjjhv8YXm3d9W"><span class="nm" data-page-node-id="s4hOJHG7s4QP8WzrcwYBPT"><i style="background:#3b82f6" data-page-node-id="HCJfC2mGs0kR8VhI6Fxkcu"></i>Sad</span><span class="fx" data-page-node-id="WjiZ5SpGFx9u5SXmXRzmX0">Tears &amp; a blue tint</span></div>
+      <div class="emo" data-page-node-id="q9sARXGAqHPrzy79hTfEsb"><span class="nm" data-page-node-id="07zrmJsry7mV85AmC3bhLi"><i style="background:#22c55e" data-page-node-id="HAUslSeRTbXAEO0XkIjcug"></i>Fear</span><span class="fx" data-page-node-id="l0omb0dSDon3AHc478Zeo3">Ghosts &amp; a green flicker</span></div>
+      <div class="emo" data-page-node-id="fsafsBfS89JnW4m6LZ1ozC"><span class="nm" data-page-node-id="gMYQEjjgRcjYXmDTRwUFnU"><i style="background:#6b7c96" data-page-node-id="ahUe5RigHdGhqwOyABLk83"></i>Disgust</span><span class="fx" data-page-node-id="POobTv8r8aGWvU8YEReLZj">Green-grey swirl</span></div>
+      <div class="emo" data-page-node-id="iGmz1UUjmXnoiUeCULNcFq"><span class="nm" data-page-node-id="jG2OAT3BCkewE12bxFwv8N"><i style="background:#94a3b8" data-page-node-id="YE7JTSHuqfpjsblMrcg7xK"></i>Neutral</span><span class="fx" data-page-node-id="HLP4KAa7gVD7Mv6UKi4Nv3">Clean, unmodified view</span></div>
+    </div>
+
+    <div class="split" style="margin-top:48px" data-page-node-id="0XKGXJMW6D3Qo566cYkauK">
+      <div class="rv" data-page-node-id="qzMUPXkaT9di2NVsmLBrnD">
+        <h3 style="color:#fff;font-size:1.3rem;margin-bottom:12px" data-page-node-id="cakW8BIo7LufgwpNeBMmgy">Expression Chat — an emotion-aware agent</h3>
+        <p style="color:rgba(255,255,255,.76)" data-page-node-id="x5Bj0mh7w4sk7S0EMAq8AM">The same emotion signal drives a chat agent that responds with the right
+        kind of support, plus a realtime display layer.</p>
+        <div class="chips" style="margin-top:6px" data-page-node-id="vyXGbTYwfAr5wD9f0IAnsQ">
+          <span class="chip" data-page-node-id="bOcK29lqUGaKDSGEhOslHs">Angry → breathing guidance</span>
+          <span class="chip" data-page-node-id="9f0nfQriTu51Wm12tX57qV">Sad → comforting music</span>
+          <span class="chip" data-page-node-id="YMtcn1oJ24IbbJAlUcdQJt">Fear → meditation guidance</span>
+          <span class="chip" data-page-node-id="pWDZQSPV1n7KlhvBNkBKAW">Disgust → calming natural video</span>
+          <span class="chip" data-page-node-id="FJlh5oHlaEFzp7K7YR4KY3">Realtime display</span>
+          <span class="chip" data-page-node-id="FcrUyMQb5fJ2LzTWBJt9hG">Chat panel</span>
+          <span class="chip" data-page-node-id="w2L79ceBkzejnyZvoR3OhW">Character loader</span>
+          <span class="chip" data-page-node-id="b3oBY8dh0jOZOHNIJGagAQ">Action handler</span>
         </div>
-    </section>
-    <!-- Projects -->
-    <section id="projects">
-        <h2><i class="fa-solid fa-rocket"></i> <span class="en">Projects</span><span class="zh">项目经历</span></h2>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-folder-open"></i> NUS School of Computing Summer Workshop 2026 — <strong>Visual Computing Track</strong></span>
-                <span class="edu-time">2026</span>
-            </div>
-            <p>
-                <span class="en">Designed a <strong>hybrid NLP‑CNN model</strong> for <em>facial expression recognition</em>, built an intelligent system supporting <em>automatic dance scoring</em> and <em>sign‑language recognition</em>. Supervised by <strong>Assoc. Prof. Terence Sim</strong>. Project awarded <strong>Third Place</strong> and <strong>Most Popular Award</strong>.</span>
-                <span class="zh">设计<strong>NLP‑CNN混合模型</strong>用于<em>人脸表情识别</em>，搭建支持<em>舞蹈自动打分</em>与<em>手语识别</em>的智能系统。由<strong>Terence Sim副教授</strong>指导，项目获得<strong>三等奖</strong>及<strong>最受欢迎项目奖</strong>。</span>
-            </p>
+      </div>
+      <div class="grid g3 rv" style="gap:12px" data-page-node-id="IRsTx4vupZcTbVH5NNDORX">
+        <div class="card" data-page-node-id="uVSE4eH3z7ZhbWK9PsRK7x"><h3 style="font-size:.98rem" data-page-node-id="Bq39otkQ47RbYgriZDn5rv">Realtime display</h3><p data-page-node-id="H8tBVBblEP0OnfKYOX0EBr">Effect layer rendered over the live camera feed.</p></div>
+        <div class="card" data-page-node-id="LvmRhE9uQieq2kx0ciKiMA"><h3 style="font-size:.98rem" data-page-node-id="prWJiYDhHADrBu6wHQIRWA">Chat panel</h3><p data-page-node-id="VLRN6pSufJ81Cg2zOJAcDy">Conversational surface for the agent's guidance.</p></div>
+        <div class="card" data-page-node-id="WPa19jZTc7cBuifsd3rwuF"><h3 style="font-size:.98rem" data-page-node-id="QWsA8issdmHE5L27emzk5B">Character loader</h3><p data-page-node-id="DQRfUj62C9YUS5QLhEKXmX">Loads and animates the assistant character.</p></div>
+        <div class="card" data-page-node-id="x40sWzilE2gAIpkGrrWz1s"><h3 style="font-size:.98rem" data-page-node-id="ADUHLC4bzXLnkROejBruQk">Action handler</h3><p data-page-node-id="MxfDZABxOa28gF48gWoJ7I">Maps predicted emotion to an action or effect.</p></div>
+        <div class="card" data-page-node-id="i7TvXQlpAhHyVPHMTpVjPa"><h3 style="font-size:.98rem" data-page-node-id="AlYKzMciA7P4FDZ0YVO9EV">Video response</h3><p data-page-node-id="uecrAl5KyDDbuzSEnUaLfF">Angry plays a calming clip; Sad plays a song.</p></div>
+        <div class="card" data-page-node-id="rBYsiW4qBvzHHpdEQZNpoR"><h3 style="font-size:.98rem" data-page-node-id="shZrvS5CpLNyNa8dEpL5Yc">Mirror &amp; preprocessing</h3><p data-page-node-id="nols8kVLSq9HD9tDpcvU9s">Mirror flip, face crop and normalisation before inference.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BONUS ================= -->
+<section id="bonus" class="bg-white" data-page-node-id="PGpV7FSfu6JRjhQMpOAjjA">
+  <div class="wrap" data-page-node-id="7Q6r7Ck7N7zGaeU9Nqu5Y5">
+    <div class="sec-head rv" data-page-node-id="yFAWVgqmKNGNGH80jzQn8F">
+      <div class="sec-eyebrow" data-page-node-id="KHUDia8GRxzGFun8t46lHI">Level 3 &middot; Bonus</div>
+      <h2 data-page-node-id="P15ypHthVu1BYkB7NAqaMj">Dancer recognition, dance scoring &amp; gesture control</h2>
+      <p data-page-node-id="O8800KfPGKRDIXtdJGTszO">The bonus level pushed the same real-time pipeline into two harder problems: who is dancing, and how well
+      are they dancing — then into a game you control with your hands.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:46px" data-page-node-id="FldRh5fmeHOtTg6mnnWQGF">
+      <div class="rv" data-page-node-id="OsIsUBsDkq2TmHgy2BtyCx">
+        <h3 style="font-size:1.28rem;color:var(--navy-800);margin-bottom:12px" data-page-node-id="Gy5s16APQpGLKTUHkvxD7W">Dancer recognition</h3>
+        <p style="color:var(--ink-2)" data-page-node-id="6yaHp1QDB1Zes9v0AEHGqA"><strong data-page-node-id="ESYOyV8Hk0Vq0bwdFoSa5U">YOLOv8s-pose</strong> provides per-frame bounding boxes, keypoints and a
+        track ID. A three-step tracker then decides, over time, who is genuinely dancing.</p>
+        <div class="steps" style="margin-top:20px" data-page-node-id="uSxOTFVjZcFfv39gsFE4fg">
+          <div class="step" data-page-node-id="Ufuhce9LEwK0P5XDQ1fJFw"><div class="n" data-page-node-id="aHm70ZDq7ZxMMOz9vVEWPB">1</div><div data-page-node-id="tqH6Xe0UbeBrjxvvTI49yZ"><h4 data-page-node-id="2F6xB7k8Ahq6WN1fh7sBxH">Update track history</h4><p data-page-node-id="MDSIx927y11aPSW2ypTsMn">Record each track's last-seen frame and register new tracks.</p></div></div>
+          <div class="step" data-page-node-id="IqgwFPvF6vmCfwgQFnFWE9"><div class="n" data-page-node-id="dnaCCftqQ6jLSYaenjdI5L">2</div><div data-page-node-id="6WR6gzUXPMRg50ybVA94a2"><h4 data-page-node-id="3mj6EZ9DCBOh7HWHSPrjGa">Score calculation</h4><p data-page-node-id="O8GyFNyufwiirQ78HPN4og">Template score (frame similarity), activity score (body speed) and reliability score (track age + joint visibility).</p></div></div>
+          <div class="step" data-page-node-id="YG7SkyCNks974SG6RQOVGH"><div class="n" data-page-node-id="VTjqQ6UngvpJj12j1zltwW">3</div><div data-page-node-id="4q2mHA9nBoT1ndKvJ3Am4S"><h4 data-page-node-id="uKAdRfyteGIQvmMlASHXNi">Promote / evict</h4><p data-page-node-id="ElpHsudKNKScq7XQC2jwwh">Add a dancer when the scores clear the thresholds; evict when motion drops out.</p></div></div>
         </div>
-        <div class="edu-item">
-            <div class="edu-top">
-                <span class="edu-school"><i class="fa-solid fa-folder-open"></i> <strong>Electrical Imaging Image Enhancement for PetroChina</strong></span>
-                <span class="edu-time"></span>
-            </div>
-            <p>
-                <span class="en">Under supervision of <strong>Prof. Chunwei Tian (HIT)</strong>. Adopted <strong>Python + OpenCV</strong>‑based image processing algorithms to enhance electrical‑imaging logging data from PetroChina. Optimized image contrast, sharpened edge features and suppressed noise, highlighting underground reservoir electrical anomalies to improve oil‑gas reservoir identification and provide precise geological evidence for petroleum exploration.</span>
-                <span class="zh">在<strong>哈尔滨工业大学田春伟教授</strong>指导下，使用<strong>Python+OpenCV</strong>图像处理算法处理中石油电成像测井数据；优化图像对比度、增强边缘、抑制噪声，突出地下储层电异常特征，提升油气储层识别效果，为油气勘探提供地质依据。</span>
-            </p>
+        <div class="formula" style="margin-top:20px" data-page-node-id="ktJRYvcQlMUl70vyOVjTY9">
+          reliability = <span class="hl" data-page-node-id="eR4PLAwFDpHJb2KR4dfkFi">0.55</span> &times; track&nbsp;age (capped 1.5&nbsp;s) + <span class="hl" data-page-node-id="oEwDH2vM2Hsai49CuRDEqu">0.45</span> &times; recent&nbsp;joint&nbsp;visibility (last 1.0&nbsp;s)<br data-page-node-id="gQo5OuAlBlnt1PFxF73h9j">
+          total = <span class="hl2" data-page-node-id="CrKnVO0riWv2C8JnYwHdCY">0.15</span> &times; template + <span class="hl2" data-page-node-id="fxLFMPG3nNzIkGgNq3Nq9o">0.55</span> &times; activity + <span class="hl2" data-page-node-id="wAFkl1HDRyPqweA0ityQtc">0.30</span> &times; reliability
+          <small data-page-node-id="ks1ecYKQBCL1CO4MLuUkLO">Evict a dancer after 1.2 s out of frame or total &lt; 0.30 for 1 s; promote a new dancer when template &gt; 0.45 &amp; activity &gt; 0.15 &amp; total &gt; 0.40.</small>
         </div>
-    </section>
+      </div>
+      <div class="rv" data-page-node-id="cWo3nkD0WiD2cFLrOoGbXN">
+        <h3 style="font-size:1.28rem;color:var(--navy-800);margin-bottom:12px" data-page-node-id="UZ34KmOWXwxRn9Aoe9Onj2">Dance scoring engine</h3>
+        <p style="color:var(--ink-2)" data-page-node-id="kIW7iz3g29D1mZQc1JMkga">A teacher video is sampled at <strong data-page-node-id="PbpBShrNoXL6JUsh72VDGF">15 FPS</strong> into a pose sequence, then
+        aligned against the live performer with an optimal action-alignment search.</p>
+        <div class="formula" style="margin-top:18px" data-page-node-id="FhwIpYdUpIcbSYJqIYgHkU">
+          Total&nbsp;Score = <span class="hl" data-page-node-id="Nken6k6J5NixqnlYLaoEqE">0.60</span> &times; Pose + <span class="hl" data-page-node-id="4A3HbHh3BVsalt4EUtiBev">0.25</span> &times; Motion + <span class="hl" data-page-node-id="YPS3tpRma9s6LFGuX4g97d">0.15</span> &times; Timing
+          <small data-page-node-id="VJI6tD11XeFC2NlrwjC5q4">Pose = angles 60% + coordinates 40% &middot; Motion = direction 70% + magnitude 30% &middot; Timing: lag &le; 0.15 s scores full, fading to ~0 by 0.8 s. Scores are smoothed exponentially.</small>
+        </div>
+        <figure class="figure mt" data-page-node-id="m13XeQ9MUme3xZByYKIzxd">
+          <img src="assets/fig-dance-score.jpg" alt="Dance scoring performance summary showing a final score of 58.2"
+               data-cap="Performance Summary — final score, pose accuracy, motion dynamics and latency" data-page-node-id="bOuKltJIJVw6rLVG3NGjUZ" />
+          <figcaption data-page-node-id="4YxB7SC4ZRQl8hxAqDBfgi">Performance Summary — final score, pose accuracy, motion dynamics and latency</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="split" style="align-items:start" data-page-node-id="MVu8CVMDOzGPqYPN547ioE">
+      <div class="rv" data-page-node-id="OLtjNjaJFeV6aZFhSDDvNv">
+        <h3 style="font-size:1.28rem;color:var(--navy-800);margin-bottom:12px" data-page-node-id="yAnzcegFb8RlKxQm9wJFDB">Hand-gesture game control</h3>
+        <p style="color:var(--ink-2)" data-page-node-id="9yWdq04MMDlhyFm4AqcK7S">Finally we turned the pipeline into play. MediaPipe hand landmarks are tracked
+        frame by frame; the detected open/closed hand state drives rotation control, and an
+        <em data-page-node-id="45RbkzONh7TFPRCRwWYjWD">Angry&nbsp;Birds</em>-style slingshot responds to gestures instead of a mouse.</p>
+        <p class="note" data-page-node-id="SQRmWkof8YXsTCna1p10rU">This level was about latency: the feedback loop only feels natural when detection, decision and
+        rendering all stay inside a single frame budget.</p>
+      </div>
+      <div class="grid g2 rv" data-page-node-id="ceujwgfzDJP0LkFEoa48nJ">
+        <figure class="figure" data-page-node-id="I4VP83yeAUQz2foCrHb1oL">
+          <img src="assets/demo-hand-gesture.jpg" alt="MediaPipe hand-landmark tracking with an open-hand gesture detected"
+               data-cap="Hand landmark tracking — gesture state detected in real time" data-page-node-id="hWx1XMKAhDOxSBzcTH88q5" />
+          <figcaption data-page-node-id="3GVKstD3GD3DQXBJQKtHHC">Hand landmark tracking — live gesture state</figcaption>
+        </figure>
+        <figure class="figure" data-page-node-id="xWEDPbYCxbJTjahHtGHFlM">
+          <img src="assets/demo-game.jpg" alt="Gesture-controlled Angry Birds style game"
+               data-cap="Gesture-controlled slingshot game — rotation control and full game" data-page-node-id="OGPfbjZgvWR43eqjFvTq2w" />
+          <figcaption data-page-node-id="CM1Vuzvu6MWs0TXIJRDmB6">Gesture-controlled slingshot game</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIGNVERSE ================= -->
+<section id="signverse" data-page-node-id="7aNdwOeKFMD6M18m3MlLVl">
+  <div class="wrap" data-page-node-id="iyHCT8wLAwAb1x0Vk7RyvL">
+    <div class="sec-head rv" data-page-node-id="c4kwweCU1sgQ0WC2GKFLqu">
+      <div class="sec-eyebrow" data-page-node-id="uS7nBwWzr8Vpp2YDAkvTeb">The bigger picture</div>
+      <h2 data-page-node-id="J5qzWAfYmz7AKc85M05Ave">SignVerse — A World Beyond Words</h2>
+      <p data-page-node-id="CSOj2HCras8tRpJ012joWB">Technology is only worth what it unlocks for people. The final message of our project was simple: the same
+      real-time video analysis that powers a demo can remove a real communication barrier.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:44px" data-page-node-id="1G91hymBR4rxG5tgihLWaE">
+      <div class="rv" data-page-node-id="oe5d5vIEqVSyxN9cdUxp9s">
+        <div class="logo-light" style="margin-bottom:22px" data-page-node-id="QFFB2kEvqXIJhOqs3IoUFR">
+          <img src="assets/signverse-logo.png" alt="SignVerse — A World Beyond Words" data-page-node-id="H4rwxPqmZJC7LAT3m0I0Q8" />
+        </div>
+        <p class="quote" style="border-color:var(--orange);color:var(--ink-2)" data-page-node-id="m1FjWwEJMHQ8DsHzSozGVz">
+          SignVerse allows Deaf and hard-of-hearing users to communicate with AI through sign language, creating a more
+          natural, independent and accessible digital experience.
+        </p>
+        <p style="color:var(--ink-2);margin-top:20px" data-page-node-id="BKcxw3DUh2EedmqdTtfzJj">
+          By reducing communication barriers, SignVerse promotes digital inclusion and helps ensure that advances in AI
+          are accessible to everyone — regardless of hearing ability.
+        </p>
+        <div class="chips" style="margin-top:22px" data-page-node-id="3XxxOZZAlasCbVbQ1aSsG9">
+          <span class="chip" data-page-node-id="TMAtz4b0Gi4L3utEYp2Rwc">HELLO</span>
+          <span class="chip" data-page-node-id="8ERacMrzR3O4gkjAwZbQve">I want COFFEE</span>
+          <span class="chip" data-page-node-id="Hho66dwE4wu6TLxWEl7R6f">I am tired</span>
+          <span class="chip" data-page-node-id="dX28csRIPLTqk1DgdBjDKa">I NEED HELP</span>
+          <span class="chip" data-page-node-id="ZRHDFFtqD2TB6jR1GklYyc">I am SICK</span>
+        </div>
+        <p class="note" data-page-node-id="AS18aSvhU5etFngUTUQAkH">Vocabulary recognised in the demo — short, practical phrases signed into the camera and matched against a reference gesture set.</p>
+      </div>
+      <figure class="figure rv" data-page-node-id="Gn4G6bdZs8Xggr0JeZIp4C">
+        <img src="assets/signverse-pipeline.jpg" alt="SignVerse recognition system pipeline using MediaPipe and dynamic time warping"
+             data-cap="SignVerse recognition pipeline — from gesture sequence to recognised meaning (DTW matching)" data-page-node-id="Nu5AjxaAr3Kc7kw4eaRhVM" />
+        <figcaption data-page-node-id="754J4vs3dnCmd8nJKCy3No">SignVerse recognition pipeline — gesture sequence &rarr; recognised meaning</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g3" data-page-node-id="g37RHRfYLLXfwGJxlatWjv">
+      <div class="card rv" data-page-node-id="i6f89nuY2LoXotd3wtoihx">
+        <span class="k-num" data-page-node-id="GoOg7pi19SSlQPzzQIMVHd">Step 1–2</span><h3 data-page-node-id="JlFIUAUgZsp2qFjREPafrI">Capture &amp; extract</h3>
+        <p data-page-node-id="yBMsESUIzFNMpovR3ppNwr">An input gesture sequence is processed by MediaPipe Hands into 2D/3D hand keypoints per frame.</p>
+      </div>
+      <div class="card rv" data-page-node-id="6P7xQSDLK16GkBvB2hgQ3N">
+        <span class="k-num" data-page-node-id="Duqq02DG7Kgn6uKMyksClF">Step 3</span><h3 data-page-node-id="FvH3QhO1hO4lNoIDifr7mX">Represent as a sequence</h3>
+        <p data-page-node-id="7ey9SRJeNgZ8okkjacDCSv">Frames become a T&nbsp;&times;&nbsp;(21 landmarks &times; 3 coordinates) feature sequence over time.</p>
+      </div>
+      <div class="card rv" data-page-node-id="HGXu9xgP5YWIowJOpG8xsH">
+        <span class="k-num" data-page-node-id="7WEECLV2aOpEjEAz7XrraH">Step 4–7</span><h3 data-page-node-id="yyXdUDQCvicPA3w2rHMCHN">Match &amp; understand</h3>
+        <p data-page-node-id="8O7q6VO68mItaJspDBv9Ni">Dynamic Time Warping compares the input against a gesture database, finds the optimal alignment path, and
+        outputs the meaning — e.g. &ldquo;HELLO&rdquo; or &ldquo;I NEED HELP&rdquo;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECOGNITION ================= -->
+<section id="recognition" class="bg-white" data-page-node-id="qszawXn5R2ZvkuAM2IeGRj">
+  <div class="wrap" data-page-node-id="hTn4p4QkPMkuitNEQRHWVB">
+    <div class="sec-head rv" data-page-node-id="YaznmdAtAgHuyqkgqIWcah">
+      <div class="sec-eyebrow" data-page-node-id="WdJ5ha9pInsJf4ULaIPGGJ">Recognition</div>
+      <h2 data-page-node-id="7LD3N8INWoMeMFp9bGePop">Certificates &amp; results</h2>
+      <p data-page-node-id="xLaizZGlD8vsyUnoS3LRTE">Every participant who completes both phases receives a certificate and an official performance slip.
+      Individual and team excellence is recognised separately.</p>
+    </div>
+
+    <div class="certgrid" data-page-node-id="Uvy1EFLqLJptYy3yU2ldBK">
+      <figure class="figure rv" data-page-node-id="nhAzCPEEB5jD0Kc0xDBd3b">
+        <img src="assets/cert-third-prize.jpg" alt="NUS Certificate of Achievement — Third Prize, Visual Computing"
+             data-cap="Certificate of Achievement — Third Prize, Visual Computing (Group 5)" data-page-node-id="WqcVLl9FVkVvbjRlkvxfJr" />
+        <figcaption data-page-node-id="mCT8aqm5W2yuPH7MLoIAk1">Certificate of Achievement — Third Prize of the course <em data-page-node-id="8VJhnbjjnVTaKJ7KHbtuJ2">Visual Computing</em> for the group
+        project <em data-page-node-id="EuFiygJAWy7xwkxnEnBIY3">Real-Time Video Analysis and Rendering</em> (9 May – 30 July 2026).</figcaption>
+      </figure>
+      <figure class="figure rv" data-page-node-id="EeLp3Rxr8iycZwAVOrbIde">
+        <img src="assets/cert-transcript.jpg" alt="Performance slip showing grade A in Visual Computing"
+             data-cap="Official NUS School of Computing performance slip — Visual Computing, grade A" data-page-node-id="05b3vqhfYmwaXsgLDt1QiC" />
+        <figcaption data-page-node-id="HiE6hrAvuZa1pA7c4LB1JA">Official performance slip — course <em data-page-node-id="InS7eZpcS4ArAWEAIvd3RW">Visual Computing</em>, performance <strong data-page-node-id="QLBvbxmiCGlYgES2VQhlHp">A</strong>.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g3" style="margin-top:44px" data-page-node-id="JHN5pZVxBEbCRJfceGFmHT">
+      <div class="card rv" data-page-node-id="KumcQVAABAJCL95pX1vvlB"><div class="ico" data-page-node-id="tY2d7u7WRBBbtJTSakMkvj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="sEOCQCtVpEIZVa9JKSsSkY"><circle cx="12" cy="9" r="5" data-page-node-id="hblG7HGBnUwLSfqMRO98FL"/><path d="M8.5 13.5L7 21l5-2.6L17 21l-1.5-7.5" data-page-node-id="9aHA4Umj2iftHO3GJrxstg"/></svg></div><h3 data-page-node-id="3bptwQTvcxAFXkDCbQSHFA">Third Prize</h3><p data-page-node-id="EGMk9Dh3kpLoaiaPyTxAsC">Awarded in the Visual Computing course project competition for <em data-page-node-id="9pwc8fpRJEDkMgaS3jLGGG">Real-Time Video Analysis and Rendering</em>, by a team of four.</p></div>
+      <div class="card rv" data-page-node-id="jQo9VBDTjIB4xuIDu4mFyO"><div class="ico" data-page-node-id="mbpxt1FTVlsRNowplmTHNL"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="z5eI9QpvvZdxCcpX44Tx8O"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6" data-page-node-id="aUpaGP7a3eqhGZrBCxFb7M"/></svg></div><h3 data-page-node-id="WcCv1dlnQvyzfOcipWK8OP">Grade A</h3><p data-page-node-id="bufjzIfTiqvCXDhW1OsNB4">Final course performance on the official performance slip, based on assignments, quizzes and the project.</p></div>
+      <div class="card rv" data-page-node-id="Szhx1J24Si5iJ6IUY77G3p"><div class="ico" data-page-node-id="oAzk3IYdUe5ZzS3UGLtoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="fuRu49ynvvAPog1MQQF6cQ"><path d="M6 3h9l4 4v14H6z" data-page-node-id="7rB9BIEsXUlTHRJcGacHAq"/><path d="M9 12h7M9 16h5" data-page-node-id="ncL89j8MDsMhY7NPN8IVXA"/></svg></div><h3 data-page-node-id="tP9hbdIA1ukzC21xFSXrF3">Completion certificate</h3><p data-page-node-id="1w8mUVkGglseoC0fgCg1bW">Certificate of successful completion of the SOC Summer Workshop 2026 (9 May – 30 July), School of Computing, NUS.</p></div>
+    </div>
+  
+    <figure class="figure rv" style="margin-top:44px" data-page-node-id="figAwardStage">
+      <img src="assets/photo-award-stage.jpg"
+           alt="Group 5 on stage receiving the Third Prize at the NUS School of Computing Summer Workshop 2026 awards ceremony"
+           data-cap="Awards ceremony, 29 July 2026 — Group 5 on stage with the Third Prize for Visual Computing"
+           data-page-node-id="figAwardStageImg" />
+      <figcaption data-page-node-id="figAwardStageCap">Awards ceremony, 29 July 2026 — Group 5 on stage with the
+      <em data-page-node-id="figAwardStageEm">Third Prize</em> for <em data-page-node-id="figAwardStageEm2">Visual Computing</em>.</figcaption>
+    </figure>
 </div>
-<footer>
-    <p><i class="fa-solid fa-copyright"></i> 2026 Yufeng Tang. Last updated: Sep 2026</p>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team" data-page-node-id="FWaENu4zVwESUkz2wn00cp">
+  <div class="wrap" data-page-node-id="EVG98XYshaj0C84HcCqO6W">
+    <div class="sec-head rv" data-page-node-id="9jVycgvdqpE79sdtX49xJ5">
+      <div class="sec-eyebrow" data-page-node-id="cXnLdM50O4wbbRsNDLGJSi">Group 5</div>
+      <h2 data-page-node-id="H3v0eDuSG8y2kicJdXCvbb">The team</h2>
+      <p data-page-node-id="5IVmfYC26ndj0efB8sncWK">Four undergraduates from three universities, working across model design, experiments, application
+      development, testing and presentation.</p>
+    </div>
+    <div class="grid g2" data-page-node-id="YE2zTjl897qhRfHNm0IK8z">
+      <div class="card rv" data-page-node-id="OVHwE9Vn1FCznGUTyDa76m">
+        <div class="member me" data-page-node-id="VurMy4MfMHzYdCHaElQL1p">
+          <div class="av" data-page-node-id="crlBP0JUThsXme06DGDQA8">YT</div>
+          <div data-page-node-id="PnXPAT05EwYgKMLhaBDcpV">
+            <h3 data-page-node-id="CzPcWwGss1CxqGPVZfmD7L">Tang Yufeng</h3>
+            <div class="uni" data-page-node-id="NW9XBlk0yKMMoniMVGVt9j">Northwestern Polytechnical University, China</div>
+            <span class="tag" data-page-node-id="Q66roZ7R3kPnVS193Lm7JJ">Presenter &middot; author of this page</span>
+            <p style="margin-top:10px" data-page-node-id="cgwY5JXflFmLEqyoIcSo8z">Interested in few-shot learning and action understanding — which is exactly what
+            drew me to the expression-recognition and dance-scoring parts of the project.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card rv" data-page-node-id="5mpWxRJ9vDhO9kQV4bhSLU">
+        <div class="member" data-page-node-id="gMhSbfFRGR8T2u1bsnogLx">
+          <div class="av" data-page-node-id="SwK1TlHzYgfazz5YsaODbE">TT</div>
+          <div data-page-node-id="gSp93xzk2MEmT7GGF8toIK">
+            <h3 data-page-node-id="AVSyww4VUzHh5ZDd07AtvY">Trinh Huu Tri</h3>
+            <div class="uni" data-page-node-id="rYDign1sSIZYozNqlMdRBT">Ho Chi Minh City University of Technology, VNU-HCM, Vietnam</div>
+            <span class="tag" data-page-node-id="MFDDEpSrj3EhEbOZ6ttgAu">Computer Science</span>
+            <p style="margin-top:10px" data-page-node-id="iatmKNuHK8pD1KPiCcc2to">Co-presenter of the final project and a driving force behind the
+            implementation work.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card rv" data-page-node-id="CEwuSL8ZFEeskaf1aSyVtI">
+        <div class="member" data-page-node-id="1OXsGwBsbGugIlhOIWPPHK">
+          <div class="av" data-page-node-id="fZd7vxMhkuOKR5YY3c8LAM">LZ</div>
+          <div data-page-node-id="eaulhwdOt4mlof1UGuQ8ll">
+            <h3 data-page-node-id="oxqr1O4ff6dBkozE7MNz9F">Lang Zining</h3>
+            <div class="uni" data-page-node-id="de9F88hzgBhZ7HUHULemT2">Zhejiang University, China</div>
+            <span class="tag" data-page-node-id="bNCOXBxNQl2GAyvQviddbH">Team member</span>
+            <p style="margin-top:10px" data-page-node-id="wbpLA4s30MXsV42goJTrw0">Enjoys exploring new places and new ways of life — and brought that curiosity to
+            the project.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card rv" data-page-node-id="hP9WaLiYLj9Tip6WJuUXSx">
+        <div class="member" data-page-node-id="PKqOi9ABVQAhUNMZmkSd0z">
+          <div class="av" data-page-node-id="JSRrREFd2IQsSic3KI61CN">ZR</div>
+          <div data-page-node-id="EsiWnJYIeRLxfyBw14IPTl">
+            <h3 data-page-node-id="JbXaGnQe0QaV1ZriRI6IGs">Zhu Rongyang</h3>
+            <div class="uni" data-page-node-id="88aASCdV1AIlmmBqWmJDAa">Zhejiang University, China</div>
+            <span class="tag" data-page-node-id="OcmXjckcXPDgE9pnYD9EPI">Team member</span>
+            <p style="margin-top:10px" data-page-node-id="UROdoDgjVD0m5rMSz6RhOs">Interested in travel and photography, and contributed to the project's visual
+            and presentation work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chips rv" style="margin-top:26px" data-page-node-id="T6QwZEkGunnAaVpLMwxDbh">
+      <span class="chip" data-page-node-id="4KHBJvs1Djml2jCgxWlizP">Model designing</span>
+      <span class="chip" data-page-node-id="D9q9XbrmNRBepmJW59zZPY">Experiment accomplishment</span>
+      <span class="chip" data-page-node-id="pTyeCYo648FMP0CCgkTmeD">Application development</span>
+      <span class="chip" data-page-node-id="G69hivqNOLeH18fbs6GSE2">Slides &amp; presentation</span>
+      <span class="chip" data-page-node-id="CrK70TqNp9yxeX0Es4zFYa">Video recording</span>
+      <span class="chip" data-page-node-id="pPlAuSMDIumfUi3B5FfJ8C">Model testing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="bg-deep" data-page-node-id="SWsfReYGWlMD2cGhFQqLYJ">
+  <div class="wrap" data-page-node-id="F0YmBYsU0NnRKa6kKBcZ88">
+    <div class="sec-head rv" data-page-node-id="DVyuOmu09YXremnArRJv5n">
+      <div class="sec-eyebrow" data-page-node-id="Fowgtt0Jqb5b0KtwAQlWtC">Photo journal</div>
+      <h2 data-page-node-id="B7TvCWcmvxwcn6HiTkVjqG">Life at the workshop</h2>
+      <p data-page-node-id="PFi6uUwbKFyzGiAhkFm7tR">Three and a half weeks in Singapore: lecture halls and lab rooms, long build sessions, and a final demo day in a
+      signature NUS orange polo shirt.</p>
+    </div>
+    <div class="gallery rv" data-page-node-id="syPkctuFWFNFRA4ZEKuNMe">
+      <figure class="gitem wide" data-page-node-id="79Xkbdve2fFGQdPDp8kAcC">
+        <img src="assets/photo-lecture-1.jpg" alt="A lecture in progress at the NUS School of Computing" data-page-node-id="38aAAxhZblZVWaQuFzsKXw" />
+        <figcaption data-page-node-id="ELcxc8co2JEEA7BuvlwCzC">Lectures in the School of Computing — theory first, project after</figcaption>
+      </figure>
+      <figure class="gitem" data-page-node-id="CEEjjYEvW3KLvQGX3sXDlz">
+        <img src="assets/photo-teamwork-1.jpg" alt="Group 5 working together in a meeting room" data-page-node-id="AFY1073UveKirOO9ZW8aEX" />
+        <figcaption data-page-node-id="L3Kuq41P8yGpOCdIgDwF3H">Group 5 in the lab — building and debugging together</figcaption>
+      </figure>
+      <figure class="gitem" data-page-node-id="gitemDemoDay">
+        <img src="assets/photo-demo-day.jpg" alt="Presenting the final project at the demo day, with the failure-case analysis on screen" data-page-node-id="gitemDemoDayi" />
+        <figcaption data-page-node-id="gitemDemoDayc">Demo day — walking the room through our failure cases and analysis</figcaption>
+      </figure>
+      <figure class="gitem" data-page-node-id="gitemCampus">
+        <img src="assets/photo-campus.jpg" alt="In front of the NUS School of Computing SEA Building sign on Research Link" data-page-node-id="gitemCampusi" />
+        <figcaption data-page-node-id="gitemCampusc">At the School of Computing — the SEA Building on Research Link</figcaption>
+      </figure>
+      <figure class="gitem" data-page-node-id="aYRqlIno6D1CDUIwJp2D3I">
+        <img src="assets/photo-lecture-2.jpg" alt="Students attending a workshop session" data-page-node-id="6DYmFUTQQD7EZbzUO1J34B" />
+        <figcaption data-page-node-id="ZRzQGtdmQGZNeKcL6V11xB">Fellow participants from universities around the world</figcaption>
+      </figure>
+      <figure class="gitem wide" data-page-node-id="SMas7Xt2dwvnQFMION2ezq">
+        <img src="assets/photo-teamwork-2.jpg" alt="Team discussion during the workshop" data-page-node-id="XcvjJtSLkmA2iNDaTDZ8AX" />
+        <figcaption data-page-node-id="unKnOFvHE6DtgtYT05CUDc">Planning the next experiment</figcaption>
+      </figure>
+      <figure class="gitem" data-page-node-id="gitemAwardTeam">
+        <img src="assets/photo-award-team.jpg" alt="Group 5 holding their certificates with the programme director on the final day" data-page-node-id="gitemAwardTeami" />
+        <figcaption data-page-node-id="gitemAwardTeamc">Certificates in hand on the final day, with our programme director</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REFLECTION ================= -->
+<section id="reflection" class="bg-white" data-page-node-id="QQJI1PF2cdOpMOTKi3o5cJ">
+  <div class="wrap" data-page-node-id="BBbOZT6Z5GEZfjW8h4QbDN">
+    <div class="sec-head rv" data-page-node-id="MG3lbkzhTVG5D48es00PKn">
+      <div class="sec-eyebrow" data-page-node-id="EXxWyeDGXKikHmgNJdjVJm">Reflection</div>
+      <h2 data-page-node-id="hm7uXIePpLTymSLdWgrjfE">What I took away</h2>
+      <p data-page-node-id="yddfOIQTwRl0fTY5f6xrxq">Beyond the certificate, the workshop changed how I think about building computer-vision systems under real
+      constraints.</p>
+    </div>
+    <div class="grid g2" data-page-node-id="CF3w7QkQ8eVgpmtOzmj6Ar">
+      <div class="card rv" data-page-node-id="E2sZ2C7tUM2HKGWGtP5or8"><span class="k-num" data-page-node-id="e04zzOQlLzBh02SyInPLbf">01</span><h3 data-page-node-id="CaFuvYBs6FwPxY0JE29f3y">Real-time is a design constraint, not a detail</h3><p data-page-node-id="NmhqjMpAxKZGK3Blm5BDPk">Every modelling choice had to survive a webcam and a frame budget. Latency shaped architecture more than accuracy did.</p></div>
+      <div class="card rv" data-page-node-id="PVKNAanBM3wNCWOv0PreUM"><span class="k-num" data-page-node-id="btovet1QMuGSZVE37k0YCV">02</span><h3 data-page-node-id="XLDbXgp1dqRrOBoTLXTUDI">Classical vs deep, decided by evidence</h3><p data-page-node-id="fGA09zdWY6USYuFnFZARCe">Benchmarking Haar against YuNet taught me to let the failure cases — rotation, lighting, occlusion — pick the method.</p></div>
+      <div class="card rv" data-page-node-id="o83Zxoi0ZWUkJ1LB9if081"><span class="k-num" data-page-node-id="6E1hrCgNtnKQS0PM9FgWzi">03</span><h3 data-page-node-id="kThDCNwexepBGD4gBdECY7">Fusion beats any single feature</h3><p data-page-node-id="IHYIEHk4muu9JGM49V4Lpm">Combining appearance and geometric features, and reading them through heatmaps and t-SNE, showed me how hybrid models earn their keep.</p></div>
+      <div class="card rv" data-page-node-id="nombE8dqFCxPtbQonsUPgQ"><span class="k-num" data-page-node-id="MGcxmf4UNyMoXvyhTHyFBh">04</span><h3 data-page-node-id="qEFM29OvepDfRx5usJy4Hc">Build for someone</h3><p data-page-node-id="sOPMgbkymgeh9gSll4K8yu">The most motivating part was SignVerse: turning a technical demo into something that could widen access for Deaf and hard-of-hearing users.</p></div>
+    </div>
+    <p class="quote rv" style="margin-top:40px;border-color:var(--navy-700);color:var(--ink-2)" data-page-node-id="JAiHmCIqW2OwGICyDHZTkl">
+      Three and a half weeks, four teammates, three universities, one camera — and a much better sense of how to turn research
+      models into systems that actually run.
+    </p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer" data-page-node-id="a8z6UOGWpNYO0YIiGzjciK">
+  <div class="wrap" data-page-node-id="7vrfDPElT1AV8Kn66Re4Yo">
+    <div class="frow" data-page-node-id="MKkMzlal2J2EAhaRLGSeBS">
+      <div style="max-width:420px" data-page-node-id="VOETO3AkT8irTq9ygE2EKF">
+        <a class="nav-brand" href="#top" style="margin-bottom:14px" data-page-node-id="533fI5skxMB2LC7ujJqrq8">
+          <img src="assets/nus-soc-logo-white.png" alt="NUS School of Computing" data-page-node-id="1VokrfABkm4IWZUZHV4beN" />
+          <span data-page-node-id="9EsiyxRhwD89tfXYFDMBCF">Summer Workshop 2026</span>
+        </a>
+        <p style="margin-top:14px" data-page-node-id="B4osT5VpXDmk6QMOCHJn0o">A personal record of the NUS School of Computing Summer Workshop 2026 —
+        the <em data-page-node-id="DAdes1a8yAi6nNT96lOmMt">Visual Computing</em> course and Group 5's Third-Prize project, <em data-page-node-id="CpLCRWd9rtJQeMoHjb3vS9">Real-Time Video Analysis and
+        Rendering</em> (SignVerse).</p>
+      </div>
+      <div data-page-node-id="FAsFcRM9LgidMJeEPE5Njb">
+        <h4 data-page-node-id="vBRcD9Tha0dhV4NIgqiZQa">Explore</h4>
+        <div class="flinks" data-page-node-id="0ZrDHp0UK5mBVZjSs8uNbd">
+          <a href="#overview" data-page-node-id="BdHN93BX8SHwqOd219z6vk">Overview</a>
+          <a href="#program" data-page-node-id="8u6zzsRCVY2E6D3N15AaFC">The programme</a>
+          <a href="#project" data-page-node-id="1ShOoV5Wc6bd5sxufhwcpX">The project</a>
+          <a href="#poster" data-page-node-id="1sUP56HOKwQGR5xPaHNVby">Poster</a>
+          <a href="#signverse" data-page-node-id="Qv41WZfWrhZT2kJOluj7CC">SignVerse</a>
+          <a href="#recognition" data-page-node-id="hbbgbYhxKBiQRBp94yEeGn">Recognition</a>
+        </div>
+      </div>
+      <div data-page-node-id="3cxXEMFqbIJHeCPL0AtEnU">
+        <h4 data-page-node-id="o3alT51LcW1GG0xszvAEgA">Links</h4>
+        <div class="flinks" data-page-node-id="xYqqZVCU4csMZvrnevayKC">
+          <a href="https://sws.comp.nus.edu.sg/" target="_blank" rel="noopener" data-page-node-id="cQy3CK131QCXB5IuiMMN2i">Official programme website</a>
+          <a href="https://www.comp.nus.edu.sg/" target="_blank" rel="noopener" data-page-node-id="n0WOUeWS957iEuIA7481e4">NUS School of Computing</a>
+          <a href="https://nus.edu.sg/" target="_blank" rel="noopener" data-page-node-id="3FGdZt42empwhx6hMZ7XJ8">National University of Singapore</a>
+        </div>
+      </div>
+    </div>
+    <div class="copy" data-page-node-id="1B4QlfPSu3dOqaNM9SGmqD">
+      <span data-page-node-id="JhIidTyS6VlCWRLMHnNIAO">NUS School of Computing &middot; Summer Workshop 2026 &middot; Visual Computing &middot; Group 5</span>
+      <span data-page-node-id="h5g5baGQQzelBNfjw1vqw7">Prepared by Yufeng Tang &middot; July–August 2026</span>
+    </div>
+  </div>
 </footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview" data-page-node-id="fD890RGHExxUTQLEKPHk3V">
+  <button class="close" id="lbClose" aria-label="Close" data-page-node-id="9WszwyR4KyeFBw23dQSZur">&times;</button>
+  <img id="lbImg" src="" alt="" data-page-node-id="z63tf6oTk6MtEIUQojp0PH" />
+  <div class="cap" id="lbCap" data-page-node-id="Ie5FRLCLRzlgB3fy8O3BIF"></div>
+</div>
+
 <script>
-const langBtn = document.getElementById('langBtn');
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-let isEn = true;
-langBtn.addEventListener('click', () => {
-    isEn = !isEn;
-    if (isEn) {
-        document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-        document.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-        langBtn.innerText = "中文";
-    } else {
-        document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-        langBtn.innerText = "English";
-    }
-});
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
+// nav solidify
+var nav = document.getElementById('nav');
+function onScroll(){ nav.classList.toggle('solid', window.scrollY > 40); }
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+// reveal on scroll
+var rv = [].slice.call(document.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-});
+  }, {rootMargin:'0px 0px -9% 0px', threshold:0.06});
+  rv.forEach(function(el,i){ el.style.transitionDelay = Math.min(i%3*70, 140)+'ms'; io.observe(el); });
+}else{ rv.forEach(function(el){ el.classList.add('in'); }); }
 
-// ---------------- News分页逻辑：每页最多5条 ----------------
-const newsItems = Array.from(document.querySelectorAll("#newsListWrap .news-item"));
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const pageInfo = document.getElementById("pageInfo");
-const perPage = 5;
-let currentPage = 1;
-const totalPage = Math.ceil(newsItems.length / perPage);
-
-function renderNews(){
-    //全部先隐藏
-    newsItems.forEach(item=>item.style.display="none");
-    const start = (currentPage-1)*perPage;
-    const end = start + perPage;
-    //显示当前页
-    for(let i=start; i<end && i<newsItems.length; i++){
-        newsItems[i].style.display="flex";
-    }
-    //按钮状态
-    prevBtn.disabled = currentPage <= 1;
-    nextBtn.disabled = currentPage >= totalPage;
-    pageInfo.innerHTML = `<span class="en">Page ${currentPage} / ${totalPage}</span><span class="zh">第 ${currentPage} / ${totalPage} 页</span>`;
+// lightbox
+var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+function openLb(src, cap, tall){
+  lbImg.src = src; lbImg.alt = cap || ''; lbCap.textContent = cap || '';
+  lb.classList.toggle('tall', !!tall);
+  lb.classList.add('open'); document.body.style.overflow = 'hidden';
 }
-prevBtn.onclick = ()=>{
-    if(currentPage>1){
-        currentPage--;
-        renderNews();
-    }
-};
-nextBtn.onclick = ()=>{
-    if(currentPage<totalPage){
-        currentPage++;
-        renderNews();
-    }
-};
-//初始化渲染第一页
-renderNews();
+function closeLb(){ lb.classList.remove('open'); lb.classList.remove('tall'); document.body.style.overflow = ''; }
+document.querySelectorAll('.figure img, .gitem img').forEach(function(img){
+  img.addEventListener('click', function(){
+    var cap = img.getAttribute('data-cap') || (img.closest('figure') && img.closest('figure').querySelector('figcaption') ? img.closest('figure').querySelector('figcaption').textContent : '');
+    openLb(img.currentSrc || img.src, cap, img.hasAttribute('data-tall'));
+  });
+});
+document.getElementById('lbClose').addEventListener('click', closeLb);
+lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLb(); });
 </script>
 </body>
 </html>
